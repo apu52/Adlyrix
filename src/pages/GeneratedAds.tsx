@@ -208,7 +208,7 @@ const CreativePoster = ({ creative }: { creative: CreativeItem }) => (
         </button>
       </div>
     </div>
-    <div className="mt-4 flex items-center justify-between rounded-[1.2rem] border border-[#33415a] bg-[#1b2434] px-4 py-3 text-xs uppercase tracking-[0.16em] text-slate-300">
+    <div className="mt-4 flex items-center justify-between rounded-[1.2rem] border border-[#5a412e] bg-[#1b1512] px-4 py-3 text-xs uppercase tracking-[0.16em] text-white/66">
       <span>{platformMeta[creative.platformId].label}</span>
       <span>{platformMeta[creative.platformId].format}</span>
       <span>{platformMeta[creative.platformId].ratio}</span>
@@ -234,22 +234,22 @@ const CreativeLibraryCard = ({
   <div
     className={`overflow-hidden rounded-[1.35rem] border transition-all ${
       isActive
-        ? "border-primary bg-[linear-gradient(180deg,rgba(86,74,255,0.16)_0%,rgba(16,21,33,0.92)_100%)] shadow-[0_0_0_1px_hsl(var(--primary)/0.18)]"
-        : "border-[#33415a] bg-[#1a2231] hover:border-[#4a5f80] hover:bg-[#202a3d]"
+        ? "border-primary bg-[linear-gradient(180deg,rgba(249,115,22,0.16)_0%,rgba(24,16,12,0.92)_100%)] shadow-[0_0_0_1px_hsl(var(--primary)/0.18)]"
+        : "border-[#5a412e] bg-[#191310] hover:border-[#7a583a] hover:bg-[#221915]"
     }`}
   >
     <button type="button" onClick={onOpen} className="block w-full text-left">
       <div className="p-3">
         <div
           style={{ aspectRatio: platformAspectRatio[creative.platformId] }}
-          className="overflow-hidden rounded-[1rem] border border-[#3a4a68] bg-[#101620]"
+          className="overflow-hidden rounded-[1rem] border border-[#5a412e] bg-[#120d0b]"
         >
           <img src={creative.imageUrl} alt={creative.title} className="h-full w-full object-cover transition-transform duration-300 hover:scale-[1.03]" />
         </div>
       </div>
       <div className="border-t border-[#2f3b52] px-3 pb-3 pt-2">
         <div className="flex items-center justify-between gap-2">
-          <span className="rounded-full border border-white/10 bg-white/5 px-2 py-1 text-[10px] uppercase tracking-[0.14em] text-slate-300">
+          <span className="rounded-full border border-white/10 bg-white/5 px-2 py-1 text-[10px] uppercase tracking-[0.14em] text-white/66">
             {platformMeta[creative.platformId].label}
           </span>
           <span className="text-[11px] text-muted-foreground">{creative.createdAtLabel}</span>
@@ -259,15 +259,15 @@ const CreativeLibraryCard = ({
       </div>
     </button>
     <div className="grid grid-cols-3 gap-2 border-t border-[#2f3b52] px-3 py-3">
-      <button type="button" onClick={onPreview} className="rounded-xl border border-[#3a4a68] bg-[#1b2434] px-2 py-2 text-[11px] text-muted-foreground transition-all hover:bg-[#253149] hover:text-foreground">
+      <button type="button" onClick={onPreview} className="rounded-xl border border-[#5a412e] bg-[#1b1512] px-2 py-2 text-[11px] text-muted-foreground transition-all hover:bg-[#241a15] hover:text-foreground">
         <Eye size={12} className="mr-1 inline-flex" />
         Preview
       </button>
-      <button type="button" onClick={onShare} className="rounded-xl border border-[#3a4a68] bg-[#1b2434] px-2 py-2 text-[11px] text-muted-foreground transition-all hover:bg-[#253149] hover:text-foreground">
+      <button type="button" onClick={onShare} className="rounded-xl border border-[#5a412e] bg-[#1b1512] px-2 py-2 text-[11px] text-muted-foreground transition-all hover:bg-[#241a15] hover:text-foreground">
         <Share2 size={12} className="mr-1 inline-flex" />
         Share
       </button>
-      <button type="button" onClick={onDownload} className="rounded-xl border border-[#3a4a68] bg-[#1b2434] px-2 py-2 text-[11px] text-muted-foreground transition-all hover:bg-[#253149] hover:text-foreground">
+      <button type="button" onClick={onDownload} className="rounded-xl border border-[#5a412e] bg-[#1b1512] px-2 py-2 text-[11px] text-muted-foreground transition-all hover:bg-[#241a15] hover:text-foreground">
         <FileImage size={12} className="mr-1 inline-flex" />
         Download
       </button>
@@ -400,10 +400,10 @@ const GeneratedAds = () => {
         className="grid min-h-[calc(100vh-9rem)] gap-0 overflow-hidden rounded-[2rem] border border-[#2a3446] bg-[linear-gradient(135deg,#091018_0%,#0d1220_45%,#121021_100%)] shadow-[0_24px_80px_hsl(230_30%_4%_/_0.45)] transition-all duration-300 ease-in-out"
         style={{ gridTemplateColumns: historyCollapsed ? "56px minmax(0,1fr)" : "360px minmax(0,1fr)" }}
       >
-        <aside className="flex min-h-0 flex-col border-r border-[#31405b] bg-[linear-gradient(180deg,#121722_0%,#171b28_100%)] transition-all duration-300 ease-in-out">
-          <div className={`flex items-center justify-between border-b border-[#31405b] bg-[#151b28] transition-all duration-300 ease-in-out ${historyCollapsed ? "px-2 py-3" : "px-5 py-5"}`}>
+        <aside className="flex min-h-0 flex-col border-r border-[#4a3527] bg-[linear-gradient(180deg,#15100d_0%,#1a1310_100%)] transition-all duration-300 ease-in-out">
+          <div className={`flex items-center justify-between border-b border-[#4a3527] bg-[#17120f] transition-all duration-300 ease-in-out ${historyCollapsed ? "px-2 py-3" : "px-5 py-5"}`}>
             <div className={`overflow-hidden transition-all duration-300 ease-in-out ${historyCollapsed ? "max-w-0 opacity-0" : "max-w-xs opacity-100"}`}><p className="text-lg font-semibold text-foreground">Refinement History</p><p className="mt-1 text-xs text-muted-foreground">Open a saved creative or session and continue editing it in chat.</p></div>
-            <button type="button" onClick={() => setHistoryCollapsed((current) => !current)} className={`shrink-0 rounded-full border border-[#3a4a68] bg-[#1c2433] text-muted-foreground transition-all hover:bg-[#273247] hover:text-foreground ${historyCollapsed ? "mx-auto h-9 w-9" : "h-9 w-9"}`}>{historyCollapsed ? <ChevronRight size={14} className="mx-auto" /> : <ChevronLeft size={14} className="mx-auto" />}</button>
+            <button type="button" onClick={() => setHistoryCollapsed((current) => !current)} className={`shrink-0 rounded-full border border-[#5a412e] bg-[#1b1512] text-muted-foreground transition-all hover:bg-[#241a15] hover:text-foreground ${historyCollapsed ? "mx-auto h-9 w-9" : "h-9 w-9"}`}>{historyCollapsed ? <ChevronRight size={14} className="mx-auto" /> : <ChevronLeft size={14} className="mx-auto" />}</button>
           </div>
           <div className={`flex-1 overflow-y-auto transition-all duration-300 ease-in-out ${historyCollapsed ? "px-2 py-3" : "px-4 py-4"}`}>
             {historyCollapsed ? (
@@ -419,7 +419,7 @@ const GeneratedAds = () => {
                       setChatReady(true);
                     }}
                     className={`overflow-hidden rounded-2xl border transition-all ${
-                      activeSession?.id === creative.sessionId ? "border-primary bg-primary/10" : "border-[#33415a] bg-[#1a2231] hover:border-[#4a5f80]"
+                      activeSession?.id === creative.sessionId ? "border-primary bg-primary/10" : "border-[#5a412e] bg-[#191310] hover:border-[#7a583a]"
                     }`}
                     title={creative.title}
                   >
@@ -432,12 +432,12 @@ const GeneratedAds = () => {
             ) : (
               <div className="space-y-5">
                 <div>
-                  <div className="mb-3 flex items-center gap-2 rounded-xl border border-[#2d3950] bg-[#1a2231] px-3 py-2">
+                  <div className="mb-3 flex items-center gap-2 rounded-xl border border-[#4a3527] bg-[#191310] px-3 py-2">
                     <FileImage size={14} className="text-primary" />
                     <p className="text-xs uppercase tracking-[0.18em] text-muted-foreground">Session Creatives</p>
                   </div>
                   {creatives.length === 0 ? (
-                    <div className="rounded-2xl border border-[#33415a] bg-[#1a2231] px-4 py-5 text-sm text-muted-foreground">
+                    <div className="rounded-2xl border border-[#5a412e] bg-[#191310] px-4 py-5 text-sm text-muted-foreground">
                       No generated ads yet. Create a new ad and it will be stored here as a gallery card.
                     </div>
                   ) : (
@@ -468,24 +468,24 @@ const GeneratedAds = () => {
                   )}
                 </div>
                 <div>
-                  <div className="mb-3 flex items-center gap-2 rounded-xl border border-[#2d3950] bg-[#1a2231] px-3 py-2">
+                  <div className="mb-3 flex items-center gap-2 rounded-xl border border-[#4a3527] bg-[#191310] px-3 py-2">
                     <MessageCircle size={14} className="text-primary" />
                     <p className="text-xs uppercase tracking-[0.18em] text-muted-foreground">Refinement Chats</p>
                   </div>
                   <div className="space-y-2">
-                    {sessions.length === 0 ? <div className="rounded-2xl border border-[#33415a] bg-[#1a2231] px-4 py-5 text-sm text-muted-foreground">No ad chats yet. Create a new ad first, then its conversation will appear here.</div> : null}
-                    {sessions.map((session) => <button key={session.id} type="button" onClick={() => { setActiveSessionId(session.id); setActivePlatform(session.platformId); setChatPlatform(session.platformId); setChatReady(true); }} className={`w-full rounded-[1.45rem] border text-left transition-all ${activeSession?.id === session.id ? "border-primary bg-[linear-gradient(180deg,rgba(86,74,255,0.18)_0%,rgba(86,74,255,0.08)_100%)] shadow-[0_0_0_1px_hsl(var(--primary)/0.18)]" : "border-[#33415a] bg-[#1a2231] hover:border-[#4a5f80] hover:bg-[#202a3d]"}`}><div className="space-y-3 px-4 py-4"><div className="flex items-center justify-between"><span className="rounded-full border border-white/10 bg-white/5 px-2.5 py-1 text-[10px] uppercase tracking-[0.14em] text-slate-300">{platformMeta[session.platformId].label}</span><span className="text-[11px] text-muted-foreground">{session.createdAtLabel}</span></div><div><p className="line-clamp-1 text-sm font-semibold text-foreground">{session.title}</p><p className="mt-1 line-clamp-2 text-xs leading-5 text-muted-foreground">{sessionLatestCreativeMap[session.id]?.caption || session.messages.filter((message) => message.role === "assistant").slice(-1)[0]?.text || "Open this card to continue refining the generated ad."}</p></div></div></button>)}
+                    {sessions.length === 0 ? <div className="rounded-2xl border border-[#5a412e] bg-[#191310] px-4 py-5 text-sm text-muted-foreground">No ad chats yet. Create a new ad first, then its conversation will appear here.</div> : null}
+                    {sessions.map((session) => <button key={session.id} type="button" onClick={() => { setActiveSessionId(session.id); setActivePlatform(session.platformId); setChatPlatform(session.platformId); setChatReady(true); }} className={`w-full rounded-[1.45rem] border text-left transition-all ${activeSession?.id === session.id ? "border-primary bg-[linear-gradient(180deg,rgba(249,115,22,0.18)_0%,rgba(249,115,22,0.08)_100%)] shadow-[0_0_0_1px_hsl(var(--primary)/0.18)]" : "border-[#5a412e] bg-[#191310] hover:border-[#7a583a] hover:bg-[#221915]"}`}><div className="space-y-3 px-4 py-4"><div className="flex items-center justify-between"><span className="rounded-full border border-white/10 bg-white/5 px-2.5 py-1 text-[10px] uppercase tracking-[0.14em] text-white/66">{platformMeta[session.platformId].label}</span><span className="text-[11px] text-muted-foreground">{session.createdAtLabel}</span></div><div><p className="line-clamp-1 text-sm font-semibold text-foreground">{session.title}</p><p className="mt-1 line-clamp-2 text-xs leading-5 text-muted-foreground">{sessionLatestCreativeMap[session.id]?.caption || session.messages.filter((message) => message.role === "assistant").slice(-1)[0]?.text || "Open this card to continue refining the generated ad."}</p></div></div></button>)}
                   </div>
                 </div>
               </div>
             )}
           </div>
         </aside>
-        <section className="flex min-h-0 flex-col bg-[radial-gradient(circle_at_top,#1b1932_0%,#0d1321_38%,#0a0e16_100%)]">
-          <div className="border-b border-[#31405b] bg-[linear-gradient(180deg,#111827_0%,#101521_100%)] px-6 py-5">
+        <section className="flex min-h-0 flex-col bg-[radial-gradient(circle_at_top,#26160f_0%,#120d0b_38%,#0a0908_100%)]">
+          <div className="border-b border-[#4a3527] bg-[linear-gradient(180deg,#17120f_0%,#120e0c_100%)] px-6 py-5">
             <div className="flex flex-wrap items-center justify-between gap-4">
               <div><h1 className="text-2xl font-semibold text-foreground">Creative Workspace</h1><p className="mt-1 text-sm text-muted-foreground">This page is only for generating and refining a selected ad in chat.</p></div>
-              <div className="flex items-center gap-3"><Link to="/ad-library" className="rounded-2xl border border-[#3a4a68] bg-[#1b2434] px-4 py-3 text-sm text-foreground transition-all hover:bg-[#243149]">Open Ad Library</Link><Link to="/create-ad" className="rounded-2xl border border-[#3a4a68] bg-[#1b2434] px-4 py-3 text-sm text-foreground transition-all hover:bg-[#243149]">Create New Ad</Link></div>
+              <div className="flex items-center gap-3"><Link to="/ad-library" className="rounded-2xl border border-[#5a412e] bg-[#1b1512] px-4 py-3 text-sm text-foreground transition-all hover:bg-[#241a15]">Open Ad Library</Link><Link to="/create-ad" className="rounded-2xl border border-[#5a412e] bg-[#1b1512] px-4 py-3 text-sm text-foreground transition-all hover:bg-[#241a15]">Create New Ad</Link></div>
             </div>
           </div>
           <div className="flex flex-1 min-h-0 flex-col">

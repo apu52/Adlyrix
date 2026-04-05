@@ -40,12 +40,12 @@ const platforms: PlatformCard[] = [
     bestFor: "Mobile",
     tags: ["Feed", "Reels"],
     previewClass: "aspect-square",
-    iconWrapClass: "bg-pink-500/20 text-pink-300 border-pink-400/25",
+    iconWrapClass: "bg-[#f97316]/12 text-[#ffd4a0] border-[#f7b26d]/30",
     cardClass:
-      "border-[#4e3869] bg-[linear-gradient(180deg,rgba(86,42,113,0.96)_0%,rgba(33,24,54,0.98)_100%)]",
+      "border-[#7f4b27] bg-[linear-gradient(180deg,rgba(88,46,22,0.96)_0%,rgba(28,18,14,0.98)_100%)]",
     previewToneClass:
-      "bg-[linear-gradient(180deg,rgba(206,95,255,0.20)_0%,rgba(120,58,186,0.10)_100%)]",
-    accentClass: "shadow-[0_0_0_1px_rgba(236,72,153,0.18),0_18px_45px_rgba(190,24,93,0.18)]",
+      "bg-[linear-gradient(180deg,rgba(251,146,60,0.22)_0%,rgba(180,83,9,0.10)_100%)]",
+    accentClass: "shadow-[0_0_0_1px_rgba(249,115,22,0.18),0_18px_45px_rgba(249,115,22,0.16)]",
   },
   {
     id: "facebook",
@@ -56,12 +56,12 @@ const platforms: PlatformCard[] = [
     bestFor: "All devices",
     tags: ["Feed", "Desktop"],
     previewClass: "aspect-[1.91/1]",
-    iconWrapClass: "bg-blue-500/20 text-blue-300 border-blue-400/25",
+    iconWrapClass: "bg-[#fff0de]/10 text-[#ffe0ba] border-[#f7b26d]/25",
     cardClass:
-      "border-[#34527d] bg-[linear-gradient(180deg,rgba(38,58,109,0.96)_0%,rgba(20,28,49,0.98)_100%)]",
+      "border-[#6a4d33] bg-[linear-gradient(180deg,rgba(76,49,28,0.96)_0%,rgba(26,18,14,0.98)_100%)]",
     previewToneClass:
-      "bg-[linear-gradient(180deg,rgba(96,165,250,0.18)_0%,rgba(29,78,216,0.10)_100%)]",
-    accentClass: "shadow-[0_0_0_1px_rgba(59,130,246,0.18),0_18px_45px_rgba(37,99,235,0.18)]",
+      "bg-[linear-gradient(180deg,rgba(255,210,160,0.18)_0%,rgba(194,120,48,0.10)_100%)]",
+    accentClass: "shadow-[0_0_0_1px_rgba(255,214,170,0.14),0_18px_45px_rgba(194,120,48,0.16)]",
   },
   {
     id: "whatsapp",
@@ -72,12 +72,12 @@ const platforms: PlatformCard[] = [
     bestFor: "Mobile",
     tags: ["Status", "Vertical"],
     previewClass: "aspect-[9/16]",
-    iconWrapClass: "bg-emerald-500/20 text-emerald-300 border-emerald-400/25",
+    iconWrapClass: "bg-[#fb923c]/12 text-[#ffd6a1] border-[#fb923c]/28",
     cardClass:
-      "border-[#2e5c50] bg-[linear-gradient(180deg,rgba(20,84,72,0.96)_0%,rgba(17,38,42,0.98)_100%)]",
+      "border-[#7a4a2e] bg-[linear-gradient(180deg,rgba(84,50,28,0.96)_0%,rgba(20,16,14,0.98)_100%)]",
     previewToneClass:
-      "bg-[linear-gradient(180deg,rgba(52,211,153,0.16)_0%,rgba(5,150,105,0.10)_100%)]",
-    accentClass: "shadow-[0_0_0_1px_rgba(16,185,129,0.18),0_18px_45px_rgba(5,150,105,0.18)]",
+      "bg-[linear-gradient(180deg,rgba(253,186,116,0.16)_0%,rgba(180,83,9,0.10)_100%)]",
+    accentClass: "shadow-[0_0_0_1px_rgba(251,146,60,0.16),0_18px_45px_rgba(180,83,9,0.16)]",
   },
   {
     id: "website",
@@ -88,12 +88,12 @@ const platforms: PlatformCard[] = [
     bestFor: "Desktop",
     tags: ["Banner", "Display"],
     previewClass: "aspect-[1.91/1]",
-    iconWrapClass: "bg-violet-500/20 text-violet-300 border-violet-400/25",
+    iconWrapClass: "bg-[#f7b26d]/12 text-[#fff0de] border-[#f7b26d]/28",
     cardClass:
-      "border-[#4f4a78] bg-[linear-gradient(180deg,rgba(67,56,115,0.96)_0%,rgba(28,24,48,0.98)_100%)]",
+      "border-[#865230] bg-[linear-gradient(180deg,rgba(97,58,28,0.96)_0%,rgba(26,18,14,0.98)_100%)]",
     previewToneClass:
-      "bg-[linear-gradient(180deg,rgba(167,139,250,0.18)_0%,rgba(109,40,217,0.10)_100%)]",
-    accentClass: "shadow-[0_0_0_1px_rgba(139,92,246,0.18),0_18px_45px_rgba(109,40,217,0.18)]",
+      "bg-[linear-gradient(180deg,rgba(255,225,198,0.20)_0%,rgba(180,83,9,0.10)_100%)]",
+    accentClass: "shadow-[0_0_0_1px_rgba(247,178,109,0.18),0_18px_45px_rgba(180,83,9,0.16)]",
   },
 ];
 
@@ -118,19 +118,19 @@ const PlatformSelection = () => {
   return (
     <DashboardLayout>
       <div className="mx-auto max-w-6xl">
-        <div className="overflow-hidden rounded-[2rem] border border-[#2f3a53] bg-[linear-gradient(180deg,#1b1730_0%,#171525_100%)] shadow-[0_24px_80px_rgba(5,8,20,0.45)]">
-          <div className="border-b border-[#2d3650] px-6 py-6 md:px-8">
-            <p className="text-xs uppercase tracking-[0.28em] text-violet-200/70">Step 1 of 4</p>
+        <div className="overflow-hidden rounded-[2rem] border border-[#6a4a30] bg-[linear-gradient(180deg,rgba(33,22,16,0.96)_0%,rgba(16,12,10,0.98)_100%)] shadow-[0_24px_80px_rgba(0,0,0,0.38)]">
+          <div className="border-b border-[#4f3827] px-6 py-6 md:px-8">
+            <p className="text-xs uppercase tracking-[0.28em] text-[#ffd9b0]/70">Step 1 of 4</p>
             <div className="mt-3 flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
               <div>
                 <h1 className="text-3xl font-bold text-white">Choose Your Platform</h1>
-                <p className="mt-2 max-w-2xl text-sm leading-7 text-slate-300">
+                <p className="mt-2 max-w-2xl text-sm leading-7 text-white/66">
                   Pick one platform at a time. The creative preview and generated ad will follow this platform&apos;s
                   exact format, tone, and aspect ratio.
                 </p>
               </div>
-              <div className="flex items-center gap-2 rounded-full border border-violet-400/20 bg-violet-500/10 px-4 py-2 text-sm text-violet-100">
-                <Sparkles size={14} className="text-violet-300" />
+              <div className="flex items-center gap-2 rounded-full border border-[#f7b26d]/20 bg-[#f97316]/10 px-4 py-2 text-sm text-[#ffe2bf]">
+                <Sparkles size={14} className="text-[#f7b26d]" />
                 One platform per generation
               </div>
             </div>
@@ -153,7 +153,7 @@ const PlatformSelection = () => {
                     className={`relative overflow-hidden rounded-[1.6rem] border p-4 text-left transition-all duration-200 ${
                       isSelected
                         ? `${platform.cardClass} ${platform.accentClass} -translate-y-1`
-                        : "border-[#33405b] bg-[linear-gradient(180deg,#242038_0%,#1a1828_100%)] hover:border-[#51627f] hover:-translate-y-1"
+                        : "border-[#4b3729] bg-[linear-gradient(180deg,#271b14_0%,#181210_100%)] hover:border-[#7a5637] hover:-translate-y-1"
                     }`}
                   >
                     <div className="absolute right-4 top-4">
@@ -176,7 +176,7 @@ const PlatformSelection = () => {
 
                     <div className="space-y-1">
                       <h3 className="text-lg font-semibold text-white">{platform.name}</h3>
-                      <p className="text-xs uppercase tracking-[0.18em] text-slate-300/75">{platform.bestFor}</p>
+                      <p className="text-xs uppercase tracking-[0.18em] text-white/52">{platform.bestFor}</p>
                     </div>
 
                     <div className="mt-5 rounded-[1.3rem] border border-white/10 bg-black/10 p-3">
@@ -191,7 +191,7 @@ const PlatformSelection = () => {
                       </div>
                     </div>
 
-                    <div className="mt-5 space-y-2 text-xs text-slate-200/85">
+                    <div className="mt-5 space-y-2 text-xs text-white/78">
                       <div className="flex items-center justify-between rounded-xl border border-white/10 bg-black/10 px-3 py-2">
                         <span>Format</span>
                         <span className="font-medium text-white">{platform.format}</span>
@@ -222,20 +222,20 @@ const PlatformSelection = () => {
             </div>
 
             <div className="mt-8 grid gap-5 xl:grid-cols-[1.2fr_0.8fr]">
-              <div className="rounded-[1.75rem] border border-[#33405b] bg-[linear-gradient(180deg,#211b35_0%,#181526_100%)] p-5">
+              <div className="rounded-[1.75rem] border border-[#4b3729] bg-[linear-gradient(180deg,#241811_0%,#16100d_100%)] p-5">
                 <div className="flex items-center gap-3">
-                  <div className="flex h-11 w-11 items-center justify-center rounded-2xl border border-violet-400/20 bg-violet-500/10 text-violet-200">
+                  <div className="flex h-11 w-11 items-center justify-center rounded-2xl border border-[#f7b26d]/20 bg-[#f97316]/10 text-[#f7b26d]">
                     <Monitor size={18} />
                   </div>
                   <div>
                     <p className="text-sm font-semibold text-white">Selected Platform</p>
-                    <p className="text-xs text-slate-400">
+                    <p className="text-xs text-white/48">
                       Only one platform can be selected, so the ad keeps the correct layout from the start.
                     </p>
                   </div>
                 </div>
 
-                <div className="mt-5 rounded-[1.4rem] border border-dashed border-[#495877] bg-[#141727] p-5">
+                <div className="mt-5 rounded-[1.4rem] border border-dashed border-[#6a4b33] bg-[#130f0d] p-5">
                   {selectedPlatform ? (
                     <div className="space-y-4">
                       <div className="flex items-center gap-3">
@@ -246,42 +246,42 @@ const PlatformSelection = () => {
                         </div>
                         <div>
                           <p className="text-lg font-semibold text-white">{selectedPlatform.name}</p>
-                          <p className="text-sm text-slate-300">
+                          <p className="text-sm text-white/68">
                             The ad will generate in <span className="font-medium text-white">{selectedPlatform.ratio}</span>
                             {" "}ratio with <span className="font-medium text-white">{selectedPlatform.format}</span> sizing.
                           </p>
                         </div>
                       </div>
                       <div className="grid gap-3 md:grid-cols-3">
-                        <div className="rounded-2xl border border-[#33405b] bg-[#191d2c] px-4 py-3">
-                          <p className="text-xs uppercase tracking-[0.16em] text-slate-400">Format</p>
+                        <div className="rounded-2xl border border-[#4b3729] bg-[#1a1411] px-4 py-3">
+                          <p className="text-xs uppercase tracking-[0.16em] text-white/44">Format</p>
                           <p className="mt-2 text-sm font-medium text-white">{selectedPlatform.format}</p>
                         </div>
-                        <div className="rounded-2xl border border-[#33405b] bg-[#191d2c] px-4 py-3">
-                          <p className="text-xs uppercase tracking-[0.16em] text-slate-400">Ratio</p>
+                        <div className="rounded-2xl border border-[#4b3729] bg-[#1a1411] px-4 py-3">
+                          <p className="text-xs uppercase tracking-[0.16em] text-white/44">Ratio</p>
                           <p className="mt-2 text-sm font-medium text-white">{selectedPlatform.ratio}</p>
                         </div>
-                        <div className="rounded-2xl border border-[#33405b] bg-[#191d2c] px-4 py-3">
-                          <p className="text-xs uppercase tracking-[0.16em] text-slate-400">Best For</p>
+                        <div className="rounded-2xl border border-[#4b3729] bg-[#1a1411] px-4 py-3">
+                          <p className="text-xs uppercase tracking-[0.16em] text-white/44">Best For</p>
                           <p className="mt-2 text-sm font-medium text-white">{selectedPlatform.bestFor}</p>
                         </div>
                       </div>
                     </div>
                   ) : (
-                    <div className="flex items-center gap-3 text-slate-300">
-                      <div className="flex h-11 w-11 items-center justify-center rounded-2xl border border-[#33405b] bg-[#191d2c]">
+                    <div className="flex items-center gap-3 text-white/68">
+                      <div className="flex h-11 w-11 items-center justify-center rounded-2xl border border-[#4b3729] bg-[#1a1411]">
                         <Smartphone size={18} />
                       </div>
                       <div>
                         <p className="text-sm font-medium text-white">No platform selected yet</p>
-                        <p className="text-xs text-slate-400">Choose one card above to continue.</p>
+                        <p className="text-xs text-white/42">Choose one card above to continue.</p>
                       </div>
                     </div>
                   )}
                 </div>
               </div>
 
-              <div className="rounded-[1.75rem] border border-[#33405b] bg-[linear-gradient(180deg,#211b35_0%,#181526_100%)] p-5">
+              <div className="rounded-[1.75rem] border border-[#4b3729] bg-[linear-gradient(180deg,#241811_0%,#16100d_100%)] p-5">
                 <p className="text-sm font-semibold text-white">How this works</p>
                 <div className="mt-4 space-y-3">
                   {[
@@ -289,10 +289,7 @@ const PlatformSelection = () => {
                     "When you switch platforms later in chat refinement, the generated ad updates to that platform format.",
                     "Platform icons and colors now follow each brand more clearly for easier selection.",
                   ].map((item) => (
-                    <div
-                      key={item}
-                      className="rounded-2xl border border-[#33405b] bg-[#191d2c] px-4 py-3 text-sm leading-7 text-slate-300"
-                    >
+                    <div key={item} className="rounded-2xl border border-[#4b3729] bg-[#1a1411] px-4 py-3 text-sm leading-7 text-white/66">
                       {item}
                     </div>
                   ))}
@@ -300,19 +297,19 @@ const PlatformSelection = () => {
               </div>
             </div>
 
-            <div className="mt-8 flex flex-col gap-3 rounded-[1.75rem] border border-[#33405b] bg-[linear-gradient(180deg,#1d1830_0%,#171423_100%)] p-5 md:flex-row md:items-center md:justify-between">
+            <div className="mt-8 flex flex-col gap-3 rounded-[1.75rem] border border-[#4b3729] bg-[linear-gradient(180deg,#211711_0%,#16100d_100%)] p-5 md:flex-row md:items-center md:justify-between">
               <div>
                 <p className="text-sm font-semibold text-white">
                   {selectedPlatform ? `${selectedPlatform.name} selected` : "Choose one platform to continue"}
                 </p>
-                <p className="mt-1 text-sm text-slate-400">
+                <p className="mt-1 text-sm text-white/44">
                   The next steps will use this platform as the base generation format.
                 </p>
               </div>
               <div className="flex items-center gap-3">
                 <Link
                   to="/dashboard"
-                  className="flex items-center gap-2 rounded-2xl border border-[#3a4662] bg-[#1a1f2d] px-5 py-3 text-sm text-slate-200 transition-all hover:bg-[#202737]"
+                  className="flex items-center gap-2 rounded-2xl border border-[#5a412e] bg-[#1a1411] px-5 py-3 text-sm text-white/84 transition-all hover:bg-[#221915]"
                 >
                   <ArrowLeft size={14} />
                   Back
@@ -323,8 +320,8 @@ const PlatformSelection = () => {
                   onClick={handleContinue}
                   className={`flex items-center gap-2 rounded-2xl px-6 py-3 text-sm font-semibold transition-all ${
                     selectedPlatform
-                      ? "bg-[linear-gradient(90deg,#8b5cf6_0%,#6d28d9_100%)] text-white shadow-[0_16px_35px_rgba(109,40,217,0.35)] hover:brightness-110"
-                      : "cursor-not-allowed bg-[#2a3040] text-slate-500"
+                      ? "bg-[linear-gradient(90deg,#fff0de_0%,#f7b26d_40%,#f97316_100%)] text-black shadow-[0_16px_35px_rgba(249,115,22,0.26)] hover:brightness-110"
+                      : "cursor-not-allowed bg-[#2a201a] text-white/30"
                   }`}
                 >
                   Continue

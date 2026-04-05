@@ -1,6 +1,7 @@
+
 import { motion } from "framer-motion";
 import { Upload, Eye, Save, Globe, Users, Building2 } from "lucide-react";
-import DashboardLayout from "@/components/DashboardLayout";
+import HeroSection from "@/components/HeroSection";
 
 const primaryColors = [
   { name: "Primary", hex: "#1B62F5", color: "hsl(220,90%,53%)" },
@@ -10,8 +11,11 @@ const primaryColors = [
 ];
 
 const BrandProfile = () => (
-  <DashboardLayout>
-    <div className="mb-6 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+  <div className="min-h-screen gradient-mesh overflow-hidden">
+    {/* Hero Section at the top with integrated navbar */}
+    <HeroSection />
+
+    <div className="mb-6 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 max-w-4xl mx-auto">
       <div>
         <h1 className="text-2xl font-bold text-foreground">Brand Profile</h1>
         <p className="text-sm text-muted-foreground">Customize your brand identity and default styles</p>
@@ -26,7 +30,7 @@ const BrandProfile = () => (
       </div>
     </div>
 
-    <div className="space-y-6 max-w-4xl">
+    <div className="space-y-6 max-w-4xl mx-auto">
       <div className="glass p-6">
         <div className="flex items-center justify-between mb-4">
           <div>
@@ -113,7 +117,7 @@ const BrandProfile = () => (
         </div>
       </div>
     </div>
-  </DashboardLayout>
+  </div>
 );
 
 export default BrandProfile;

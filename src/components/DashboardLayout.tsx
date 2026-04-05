@@ -1,6 +1,6 @@
 import { ReactNode, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { LayoutDashboard, PlusCircle, FolderOpen, BarChart3, Search, Bell, User, Zap, Menu, X, PanelLeftClose, PanelLeftOpen, LogOut, ChevronDown, MessagesSquare } from "lucide-react";
+import { LayoutDashboard, PlusCircle, FolderOpen, BarChart3, Search, Bell, User, Menu, X, PanelLeftClose, PanelLeftOpen, LogOut, ChevronDown, MessagesSquare } from "lucide-react";
 
 const navItems = [
   { icon: LayoutDashboard, label: "Dashboard", path: "/dashboard" },
@@ -21,19 +21,17 @@ const DashboardLayout = ({ children }: { children: ReactNode }) => {
     <div className="flex h-screen gradient-mesh overflow-hidden">
       {/* Sidebar */}
       <aside className={`
-        fixed inset-y-0 left-0 z-40 glass-strong flex flex-col transition-all duration-300
+        fixed inset-y-0 left-0 z-40 flex flex-col border-r border-[#f7b26d]/10 bg-[linear-gradient(180deg,rgba(34,22,15,0.92)_0%,rgba(12,10,9,0.96)_100%)] backdrop-blur-xl transition-all duration-300
         md:relative md:translate-x-0
         ${sidebarCollapsed ? "md:w-16" : "md:w-64"}
         w-64
         ${sidebarOpen ? "translate-x-0" : "-translate-x-full"}
       `}>
         <div className={`flex items-center gap-2 border-b border-border py-5 ${sidebarCollapsed ? "px-3 md:justify-center" : "px-6"}`}>
-          <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary/20 shrink-0">
-            <Zap className="h-4 w-4 text-primary" />
-          </div>
+          <img src="/adlyrix-favicon.svg" alt="Adlyrix" className="h-8 w-8 shrink-0 rounded-lg" />
           {!sidebarCollapsed && <span className="font-bold text-foreground">Adlyrix</span>}
           <button
-            className={`ml-auto hidden md:inline-flex items-center justify-center rounded-full border border-border/70 bg-background/40 text-muted-foreground transition-all hover:text-foreground ${sidebarCollapsed ? "h-8 w-8" : "h-8 w-8"}`}
+            className={`ml-auto hidden md:inline-flex items-center justify-center rounded-full border border-border/70 bg-background/40 text-muted-foreground transition-all hover:border-primary/40 hover:text-foreground ${sidebarCollapsed ? "h-8 w-8" : "h-8 w-8"}`}
             onClick={() => setSidebarCollapsed((current) => !current)}
           >
             {sidebarCollapsed ? <PanelLeftOpen size={18} /> : <PanelLeftClose size={18} />}
@@ -55,8 +53,8 @@ const DashboardLayout = ({ children }: { children: ReactNode }) => {
                   sidebarCollapsed ? "justify-center px-1.5" : "gap-3 px-3"
                 } ${
                   active
-                    ? "bg-primary/15 text-primary glow-primary"
-                    : "text-muted-foreground hover:bg-secondary hover:text-foreground"
+                    ? "bg-primary/12 text-primary shadow-[0_0_0_1px_hsl(var(--primary)/0.18),0_10px_30px_rgba(249,115,22,0.12)]"
+                    : "text-muted-foreground hover:bg-secondary/70 hover:text-foreground"
                 }`}
                 title={sidebarCollapsed ? label : undefined}
               >
@@ -71,7 +69,7 @@ const DashboardLayout = ({ children }: { children: ReactNode }) => {
           <button
             type="button"
             onClick={() => setBottomProfileOpen((current) => !current)}
-            className={`glass-subtle w-full rounded-lg p-3 flex items-center ${sidebarCollapsed ? "justify-center px-1" : "gap-3"}`}
+            className={`w-full rounded-lg border border-white/10 bg-white/[0.04] p-3 flex items-center ${sidebarCollapsed ? "justify-center px-1" : "gap-3"}`}
           >
             <div className="h-8 w-8 rounded-full bg-primary/20 flex items-center justify-center text-primary text-xs font-bold shrink-0">
               AM
@@ -88,7 +86,7 @@ const DashboardLayout = ({ children }: { children: ReactNode }) => {
           </button>
 
           {bottomProfileOpen && (
-            <div className="absolute bottom-full left-0 right-0 mb-2 rounded-lg border border-border bg-card p-2 shadow-lg">
+                <div className="absolute bottom-full left-0 right-0 mb-2 rounded-lg border border-border bg-card p-2 shadow-lg">
               <Link
                 to="/login"
                 className="flex items-center gap-2 rounded-md px-3 py-2 text-sm text-muted-foreground transition-all hover:bg-secondary hover:text-foreground"
@@ -104,7 +102,7 @@ const DashboardLayout = ({ children }: { children: ReactNode }) => {
 
       {/* Main */}
       <div className="flex-1 flex flex-col overflow-hidden">
-        <header className="glass-strong flex items-center justify-between px-6 py-3 border-b border-border">
+        <header className="flex items-center justify-between border-b border-[#f7b26d]/10 bg-[linear-gradient(180deg,rgba(28,19,13,0.9)_0%,rgba(16,12,10,0.92)_100%)] px-6 py-3 backdrop-blur-xl">
           <div className="flex items-center gap-3">
             <button className="md:hidden text-muted-foreground" onClick={() => setSidebarOpen(true)}>
               <Menu size={20} />
@@ -113,7 +111,7 @@ const DashboardLayout = ({ children }: { children: ReactNode }) => {
               <Search size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground" />
               <input
                 placeholder="Search campaigns..."
-                className="w-64 rounded-lg border border-border bg-input pl-9 pr-4 py-2 text-sm text-foreground placeholder:text-muted-foreground/50 focus:border-primary outline-none transition-all"
+                className="w-64 rounded-lg border border-border bg-input pl-9 pr-4 py-2 text-sm text-foreground placeholder:text-muted-foreground/50 outline-none transition-all focus:border-primary"
               />
             </div>
           </div>

@@ -87,7 +87,7 @@ const Dashboard = () => (
         initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.05 }}
-        className="rounded-[1.75rem] border border-[#33415a] bg-[linear-gradient(135deg,#1f1c35_0%,#171626_55%,#131826_100%)] p-6 shadow-[0_20px_50px_rgba(0,0,0,0.2)]"
+        className="rounded-[1.75rem] border border-[#5a412e] bg-[linear-gradient(135deg,#231811_0%,#17110d_55%,#120f0d_100%)] p-6 shadow-[0_20px_50px_rgba(0,0,0,0.2)]"
       >
         <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
           <div className="flex items-start gap-4">
@@ -103,7 +103,7 @@ const Dashboard = () => (
           </div>
           <Link
             to="/ad-library"
-            className="inline-flex items-center gap-2 rounded-2xl border border-[#3a4a68] bg-[#1b2434] px-5 py-3 text-sm text-foreground transition-all hover:bg-[#243149]"
+            className="inline-flex items-center gap-2 rounded-2xl border border-[#5a412e] bg-[#1b1512] px-5 py-3 text-sm text-foreground transition-all hover:bg-[#241a15]"
           >
             Open Ad Library
             <ArrowRight size={14} />
@@ -115,7 +115,7 @@ const Dashboard = () => (
         initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.08 }}
-        className="rounded-[1.75rem] border border-[#33415a] bg-[linear-gradient(135deg,#18202f_0%,#121a28_55%,#101523_100%)] p-6 shadow-[0_20px_50px_rgba(0,0,0,0.2)]"
+        className="rounded-[1.75rem] border border-[#5a412e] bg-[linear-gradient(135deg,#211711_0%,#16100d_55%,#120f0d_100%)] p-6 shadow-[0_20px_50px_rgba(0,0,0,0.2)]"
       >
         <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
           <div className="flex items-start gap-4">
@@ -131,7 +131,7 @@ const Dashboard = () => (
           </div>
           <Link
             to="/chat-history"
-            className="inline-flex items-center gap-2 rounded-2xl border border-[#3a4a68] bg-[#1b2434] px-5 py-3 text-sm text-foreground transition-all hover:bg-[#243149]"
+            className="inline-flex items-center gap-2 rounded-2xl border border-[#5a412e] bg-[#1b1512] px-5 py-3 text-sm text-foreground transition-all hover:bg-[#241a15]"
           >
             Open Previous Chats
             <ArrowRight size={14} />
@@ -167,11 +167,11 @@ const Dashboard = () => (
           <h3 className="text-sm font-semibold text-foreground mb-4">Campaign Insights</h3>
           <ResponsiveContainer width="100%" height={220}>
             <BarChart data={chartData}>
-              <CartesianGrid strokeDasharray="3 3" stroke="hsl(230,20%,18%)" />
-              <XAxis dataKey="name" tick={{ fill: "hsl(220,15%,55%)", fontSize: 11 }} />
-              <YAxis tick={{ fill: "hsl(220,15%,55%)", fontSize: 11 }} />
-              <Tooltip contentStyle={{ background: "hsl(230,25%,12%)", border: "1px solid hsl(230,20%,22%)", borderRadius: 8, color: "hsl(220,20%,95%)" }} />
-              <Bar dataKey="revenue" fill="hsl(250,85%,65%)" radius={[4, 4, 0, 0]} />
+              <CartesianGrid strokeDasharray="3 3" stroke="rgba(247,178,109,0.12)" />
+              <XAxis dataKey="name" tick={{ fill: "rgba(255,255,255,0.48)", fontSize: 11 }} />
+              <YAxis tick={{ fill: "rgba(255,255,255,0.48)", fontSize: 11 }} />
+              <Tooltip contentStyle={{ background: "#18110d", border: "1px solid rgba(247,178,109,0.18)", borderRadius: 12, color: "#fff7ed" }} />
+              <Bar dataKey="revenue" fill="#f7b26d" radius={[4, 4, 0, 0]} />
             </BarChart>
           </ResponsiveContainer>
         </div>
@@ -179,17 +179,17 @@ const Dashboard = () => (
           <h3 className="text-sm font-semibold text-foreground mb-4">Click Performance</h3>
           <ResponsiveContainer width="100%" height={220}>
             <LineChart data={chartData}>
-              <CartesianGrid strokeDasharray="3 3" stroke="hsl(230,20%,18%)" />
-              <XAxis dataKey="name" tick={{ fill: "hsl(220,15%,55%)", fontSize: 11 }} />
-              <YAxis tick={{ fill: "hsl(220,15%,55%)", fontSize: 11 }} />
-              <Tooltip contentStyle={{ background: "hsl(230,25%,12%)", border: "1px solid hsl(230,20%,22%)", borderRadius: 8, color: "hsl(220,20%,95%)" }} />
-              <Line type="monotone" dataKey="clicks" stroke="hsl(200,95%,60%)" strokeWidth={2} dot={{ fill: "hsl(200,95%,60%)" }} />
+              <CartesianGrid strokeDasharray="3 3" stroke="rgba(247,178,109,0.12)" />
+              <XAxis dataKey="name" tick={{ fill: "rgba(255,255,255,0.48)", fontSize: 11 }} />
+              <YAxis tick={{ fill: "rgba(255,255,255,0.48)", fontSize: 11 }} />
+              <Tooltip contentStyle={{ background: "#18110d", border: "1px solid rgba(247,178,109,0.18)", borderRadius: 12, color: "#fff7ed" }} />
+              <Line type="monotone" dataKey="clicks" stroke="#fb923c" strokeWidth={2} dot={{ fill: "#fb923c" }} />
             </LineChart>
           </ResponsiveContainer>
         </div>
       </div>
 
-      <div className="rounded-[1.75rem] border border-[#33415a] bg-[linear-gradient(180deg,#171c2a_0%,#121826_100%)] p-5 shadow-[0_16px_40px_rgba(0,0,0,0.18)]">
+      <div className="rounded-[1.75rem] border border-[#5a412e] bg-[linear-gradient(180deg,#18120e_0%,#120f0d_100%)] p-5 shadow-[0_16px_40px_rgba(0,0,0,0.18)]">
         <div className="mb-4 flex items-center justify-between">
           <div>
             <h3 className="text-sm font-semibold text-foreground">Library Preview</h3>
@@ -204,10 +204,10 @@ const Dashboard = () => (
             <Link
               key={item.id}
               to={`/chat-history?session=${item.id}`}
-              className="group overflow-hidden rounded-[1.5rem] border border-[#33415a] bg-[#1a2231] transition-all hover:-translate-y-1 hover:border-[#4a5f80] hover:shadow-[0_18px_45px_rgba(0,0,0,0.24)]"
+              className="group overflow-hidden rounded-[1.5rem] border border-[#5a412e] bg-[#191310] transition-all hover:-translate-y-1 hover:border-[#7a583a] hover:shadow-[0_18px_45px_rgba(0,0,0,0.24)]"
             >
               <div className="p-4">
-                <div className={`${item.aspectClass} overflow-hidden rounded-[1rem] border border-[#3a4a68] bg-[#101620]`}>
+                <div className={`${item.aspectClass} overflow-hidden rounded-[1rem] border border-[#5a412e] bg-[#120d0b]`}>
                   <img
                     src={item.imageUrl}
                     alt={item.title}
@@ -215,9 +215,9 @@ const Dashboard = () => (
                   />
                 </div>
               </div>
-              <div className="border-t border-[#2f3b52] px-4 py-4">
+              <div className="border-t border-[#3b2b20] px-4 py-4">
                 <div className="flex items-center justify-between gap-3">
-                  <span className="rounded-full border border-white/10 bg-white/5 px-2.5 py-1 text-[10px] uppercase tracking-[0.14em] text-slate-300">
+                  <span className="rounded-full border border-white/10 bg-white/5 px-2.5 py-1 text-[10px] uppercase tracking-[0.14em] text-white/68">
                     {item.platform}
                   </span>
                   <span className="text-[11px] text-muted-foreground">{item.createdAt}</span>

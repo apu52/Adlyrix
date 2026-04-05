@@ -40,7 +40,7 @@ const AdLibrary = () => {
   return (
     <DashboardLayout>
       <div className="space-y-6">
-        <div className="rounded-[2rem] border border-[#31405b] bg-[linear-gradient(135deg,#101826_0%,#121a2a_50%,#17132a_100%)] p-6 shadow-[0_24px_80px_rgba(0,0,0,0.28)]">
+        <div className="rounded-[2rem] border border-[#5a412e] bg-[linear-gradient(135deg,#17110e_0%,#1b1411_50%,#21150f_100%)] p-6 shadow-[0_24px_80px_rgba(0,0,0,0.28)]">
           <div className="flex flex-col gap-5 md:flex-row md:items-center md:justify-between">
             <div className="flex items-start gap-4">
               <div className="flex h-14 w-14 items-center justify-center rounded-2xl border border-primary/25 bg-primary/10 text-primary">
@@ -53,32 +53,32 @@ const AdLibrary = () => {
                 </p>
               </div>
             </div>
-            <Link to="/create-ad" className="inline-flex items-center justify-center rounded-2xl border border-[#3a4a68] bg-[#1b2434] px-5 py-3 text-sm text-foreground transition-all hover:bg-[#243149]">
+            <Link to="/create-ad" className="inline-flex items-center justify-center rounded-2xl border border-[#5a412e] bg-[#1b1512] px-5 py-3 text-sm text-foreground transition-all hover:bg-[#241a15]">
               Create New Ad
             </Link>
           </div>
         </div>
 
-        <div className="rounded-[2rem] border border-[#31405b] bg-[linear-gradient(180deg,#141a27_0%,#101621_100%)] p-5 shadow-[0_18px_60px_rgba(0,0,0,0.24)]">
-          <div className="mb-4 flex items-center gap-2 rounded-xl border border-[#2d3950] bg-[#1a2231] px-3 py-2">
+        <div className="rounded-[2rem] border border-[#5a412e] bg-[linear-gradient(180deg,#17110e_0%,#120e0c_100%)] p-5 shadow-[0_18px_60px_rgba(0,0,0,0.24)]">
+          <div className="mb-4 flex items-center gap-2 rounded-xl border border-[#4a3527] bg-[#191310] px-3 py-2">
             <FileImage size={14} className="text-primary" />
             <p className="text-xs uppercase tracking-[0.18em] text-muted-foreground">Saved Ads Gallery</p>
           </div>
 
           <div className="grid gap-5 xl:grid-cols-2">
             {demoLibraryCreatives.map((creative) => (
-              <div key={creative.id} className="overflow-hidden rounded-[1.5rem] border border-[#33415a] bg-[#1a2231] transition-all hover:border-[#4a5f80] hover:shadow-[0_18px_45px_rgba(0,0,0,0.24)]">
+              <div key={creative.id} className="overflow-hidden rounded-[1.5rem] border border-[#5a412e] bg-[#191310] transition-all hover:border-[#7a583a] hover:shadow-[0_18px_45px_rgba(0,0,0,0.24)]">
                 <button type="button" onClick={() => { setPreviewCreative(creative); setPreviewZoom(1); }} className="block w-full text-left">
                   <div className="p-4">
-                    <div style={{ aspectRatio: platformAspectRatio[creative.platformId] }} className="overflow-hidden rounded-[1.1rem] border border-[#3a4a68] bg-[#101620]">
+                    <div style={{ aspectRatio: platformAspectRatio[creative.platformId] }} className="overflow-hidden rounded-[1.1rem] border border-[#5a412e] bg-[#120d0b]">
                       <img src={creative.imageUrl} alt={creative.title} className="h-full w-full object-cover transition-transform duration-300 hover:scale-[1.03]" />
                     </div>
                   </div>
                 </button>
 
-                <div className="border-t border-[#2f3b52] px-4 py-4">
+                <div className="border-t border-[#3b2b20] px-4 py-4">
                   <div className="flex items-center justify-between gap-3">
-                    <span className="rounded-full border border-white/10 bg-white/5 px-2.5 py-1 text-[10px] uppercase tracking-[0.14em] text-slate-300">
+                    <span className="rounded-full border border-white/10 bg-white/5 px-2.5 py-1 text-[10px] uppercase tracking-[0.14em] text-white/66">
                       {platformMeta[creative.platformId].label}
                     </span>
                     <span className="text-[11px] text-muted-foreground">{creative.createdAtLabel}</span>
@@ -86,20 +86,20 @@ const AdLibrary = () => {
                   <p className="mt-3 text-xl font-semibold text-foreground">{creative.title}</p>
                   <p className="mt-2 text-sm leading-7 text-muted-foreground">{creative.caption}</p>
                   <div className="mt-4 flex flex-wrap gap-2">
-                    <button type="button" onClick={() => { setPreviewCreative(creative); setPreviewZoom(1); }} className="rounded-xl border border-[#3a4a68] bg-[#1b2434] px-3 py-2 text-xs text-muted-foreground transition-all hover:bg-[#253149] hover:text-foreground">
+                    <button type="button" onClick={() => { setPreviewCreative(creative); setPreviewZoom(1); }} className="rounded-xl border border-[#5a412e] bg-[#1b1512] px-3 py-2 text-xs text-muted-foreground transition-all hover:bg-[#241a15] hover:text-foreground">
                       <Eye size={12} className="mr-1 inline-flex" />
                       Preview
                     </button>
-              <button type="button" onClick={() => { setShareCreative(creative); setCopiedLink(false); }} className="rounded-xl border border-[#3a4a68] bg-[#1b2434] px-3 py-2 text-xs text-muted-foreground transition-all hover:bg-[#253149] hover:text-foreground">
+              <button type="button" onClick={() => { setShareCreative(creative); setCopiedLink(false); }} className="rounded-xl border border-[#5a412e] bg-[#1b1512] px-3 py-2 text-xs text-muted-foreground transition-all hover:bg-[#241a15] hover:text-foreground">
                       <Share2 size={12} className="mr-1 inline-flex" />
                       Share
                     </button>
-                    <a href={creative.imageUrl} download={`${creative.title}.jpg`} className="rounded-xl border border-[#3a4a68] bg-[#1b2434] px-3 py-2 text-xs text-muted-foreground transition-all hover:bg-[#253149] hover:text-foreground">
+                    <a href={creative.imageUrl} download={`${creative.title}.jpg`} className="rounded-xl border border-[#5a412e] bg-[#1b1512] px-3 py-2 text-xs text-muted-foreground transition-all hover:bg-[#241a15] hover:text-foreground">
                       <FileImage size={12} className="mr-1 inline-flex" />
                       Download
                     </a>
                   </div>
-                  <div className="mt-4 flex items-center justify-between rounded-[1rem] border border-[#33415a] bg-[#141b28] px-3 py-3 text-[11px] uppercase tracking-[0.16em] text-slate-300">
+                  <div className="mt-4 flex items-center justify-between rounded-[1rem] border border-[#5a412e] bg-[#14100d] px-3 py-3 text-[11px] uppercase tracking-[0.16em] text-white/66">
                     <span>{creative.type}</span>
                     <span>{platformMeta[creative.platformId].format}</span>
                     <span>{platformMeta[creative.platformId].ratio}</span>
@@ -113,13 +113,13 @@ const AdLibrary = () => {
 
       {shareCreative && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 px-4">
-          <div className="w-full max-w-xl rounded-[1.75rem] border border-[#33415a] bg-[#151b24] p-6 shadow-[0_18px_60px_rgba(0,0,0,0.35)]">
+          <div className="w-full max-w-xl rounded-[1.75rem] border border-[#5a412e] bg-[#15100e] p-6 shadow-[0_18px_60px_rgba(0,0,0,0.35)]">
             <div className="mb-5 flex items-center justify-between">
               <div>
                 <h3 className="text-xl font-semibold text-foreground">Share Creative</h3>
                 <p className="mt-1 text-sm text-muted-foreground">Choose a platform or copy the direct image link.</p>
               </div>
-              <button type="button" onClick={() => setShareCreative(null)} className="rounded-xl border border-[#3a4a68] bg-[#1b2434] p-2 text-muted-foreground hover:bg-[#253149]">
+              <button type="button" onClick={() => setShareCreative(null)} className="rounded-xl border border-[#5a412e] bg-[#1b1512] p-2 text-muted-foreground hover:bg-[#241a15]">
                 <X size={16} />
               </button>
             </div>
@@ -131,7 +131,7 @@ const AdLibrary = () => {
                 const generatedShareUrl = platform.shareUrl(shareCreative.imageUrl, text);
 
                 return (
-                  <button key={platformId} type="button" onClick={() => window.open(generatedShareUrl, "_blank", "width=900,height=700")} className="rounded-2xl border border-[#33415a] bg-[#1a2231] px-4 py-4 text-left transition-all hover:border-[#4a5f80] hover:bg-[#202a3d]">
+                  <button key={platformId} type="button" onClick={() => window.open(generatedShareUrl, "_blank", "width=900,height=700")} className="rounded-2xl border border-[#5a412e] bg-[#191310] px-4 py-4 text-left transition-all hover:border-[#7a583a] hover:bg-[#221915]">
                     <div className="mb-2 flex items-center gap-3">
                       <div className="flex h-10 w-10 items-center justify-center rounded-full bg-primary/15 text-primary">
                         <Icon size={18} />
@@ -143,7 +143,7 @@ const AdLibrary = () => {
                 );
               })}
             </div>
-            <div className="mt-5 rounded-2xl border border-[#33415a] bg-[#1a2231] p-4">
+            <div className="mt-5 rounded-2xl border border-[#5a412e] bg-[#191310] p-4">
               <div className="mb-3 flex items-center justify-between gap-3">
                 <div className="flex items-center gap-2">
                   <LinkIcon size={14} className="text-primary" />
@@ -152,12 +152,12 @@ const AdLibrary = () => {
                 <button
                   type="button"
                   onClick={() => void handleCopyLink(shareCreative.imageUrl)}
-                  className="rounded-xl border border-[#3a4a68] bg-[#101620] px-3 py-2 text-xs font-medium text-foreground transition-all hover:bg-[#253149]"
+                  className="rounded-xl border border-[#5a412e] bg-[#120d0b] px-3 py-2 text-xs font-medium text-foreground transition-all hover:bg-[#241a15]"
                 >
                   {copiedLink ? "Copied" : "Copy"}
                 </button>
               </div>
-              <input value={shareCreative.imageUrl} readOnly className="w-full rounded-xl border border-[#3a4a68] bg-[#101620] px-4 py-3 text-sm text-foreground outline-none" />
+              <input value={shareCreative.imageUrl} readOnly className="w-full rounded-xl border border-[#5a412e] bg-[#120d0b] px-4 py-3 text-sm text-foreground outline-none" />
             </div>
           </div>
         </div>
@@ -165,29 +165,29 @@ const AdLibrary = () => {
 
       {previewCreative && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 px-4">
-          <div className="w-full max-w-6xl rounded-[1.75rem] border border-[#33415a] bg-[#151b24] p-5 shadow-[0_18px_60px_rgba(0,0,0,0.35)]">
+          <div className="w-full max-w-6xl rounded-[1.75rem] border border-[#5a412e] bg-[#15100e] p-5 shadow-[0_18px_60px_rgba(0,0,0,0.35)]">
             <div className="mb-4 flex items-center justify-between">
               <div>
                 <h3 className="text-xl font-semibold text-foreground">{previewCreative.title}</h3>
                 <p className="mt-1 text-sm text-muted-foreground">{platformMeta[previewCreative.platformId].label} preview</p>
               </div>
               <div className="flex items-center gap-2">
-                <button type="button" onClick={() => setPreviewZoom((current) => Math.max(0.8, current - 0.1))} className="rounded-xl border border-[#3a4a68] bg-[#1b2434] p-2 text-muted-foreground hover:bg-[#253149]">
+                <button type="button" onClick={() => setPreviewZoom((current) => Math.max(0.8, current - 0.1))} className="rounded-xl border border-[#5a412e] bg-[#1b1512] p-2 text-muted-foreground hover:bg-[#241a15]">
                   <ZoomOut size={16} />
                 </button>
-                <button type="button" onClick={() => setPreviewZoom((current) => Math.min(2, current + 0.1))} className="rounded-xl border border-[#3a4a68] bg-[#1b2434] p-2 text-muted-foreground hover:bg-[#253149]">
+                <button type="button" onClick={() => setPreviewZoom((current) => Math.min(2, current + 0.1))} className="rounded-xl border border-[#5a412e] bg-[#1b1512] p-2 text-muted-foreground hover:bg-[#241a15]">
                   <ZoomIn size={16} />
                 </button>
-                <button type="button" onClick={() => setPreviewCreative(null)} className="rounded-xl border border-[#3a4a68] bg-[#1b2434] p-2 text-muted-foreground hover:bg-[#253149]">
+                <button type="button" onClick={() => setPreviewCreative(null)} className="rounded-xl border border-[#5a412e] bg-[#1b1512] p-2 text-muted-foreground hover:bg-[#241a15]">
                   <X size={16} />
                 </button>
               </div>
             </div>
-            <div className="max-h-[78vh] overflow-auto rounded-[1.5rem] border border-[#33415a] bg-[#0d131d] px-6 py-8">
+            <div className="max-h-[78vh] overflow-auto rounded-[1.5rem] border border-[#5a412e] bg-[#120d0b] px-6 py-8">
               <div className="flex justify-center">
                 <div style={{ transform: `scale(${previewZoom})` }} className="origin-top transition-transform duration-200">
                   <div className="w-full max-w-[780px]">
-                    <div style={{ aspectRatio: platformAspectRatio[previewCreative.platformId] }} className="overflow-hidden rounded-[1.4rem] border border-[#3a4a68] bg-[#101620]">
+                    <div style={{ aspectRatio: platformAspectRatio[previewCreative.platformId] }} className="overflow-hidden rounded-[1.4rem] border border-[#5a412e] bg-[#120d0b]">
                       <img src={previewCreative.imageUrl} alt={previewCreative.title} className="h-full w-full object-cover" />
                     </div>
                   </div>

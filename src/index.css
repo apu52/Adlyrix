@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;700&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -6,56 +6,56 @@
 
 @layer base {
   :root {
-    --background: 230 25% 7%;
-    --foreground: 220 20% 95%;
+    --background: 24 28% 7%;
+    --foreground: 30 25% 95%;
 
-    --card: 230 25% 10%;
-    --card-foreground: 220 20% 95%;
+    --card: 20 22% 10%;
+    --card-foreground: 30 25% 95%;
 
-    --popover: 230 25% 10%;
-    --popover-foreground: 220 20% 95%;
+    --popover: 20 22% 10%;
+    --popover-foreground: 30 25% 95%;
 
-    --primary: 250 85% 65%;
+    --primary: 28 92% 61%;
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 230 25% 15%;
-    --secondary-foreground: 220 20% 85%;
+    --secondary: 24 20% 15%;
+    --secondary-foreground: 32 18% 85%;
 
-    --muted: 230 20% 14%;
-    --muted-foreground: 220 15% 55%;
+    --muted: 24 18% 14%;
+    --muted-foreground: 28 10% 62%;
 
-    --accent: 200 95% 60%;
+    --accent: 39 96% 68%;
     --accent-foreground: 0 0% 100%;
 
     --destructive: 0 72% 51%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 230 20% 18%;
-    --input: 230 20% 16%;
-    --ring: 250 85% 65%;
+    --border: 24 18% 22%;
+    --input: 24 18% 14%;
+    --ring: 28 92% 61%;
 
     --radius: 0.75rem;
 
-    --neon-purple: 270 95% 65%;
-    --neon-blue: 210 100% 60%;
-    --neon-cyan: 185 95% 55%;
-    --neon-indigo: 240 80% 55%;
+    --neon-purple: 20 84% 52%;
+    --neon-blue: 32 100% 66%;
+    --neon-cyan: 42 92% 72%;
+    --neon-indigo: 14 74% 45%;
 
-    --glass-bg: 230 25% 12%;
-    --glass-border: 230 20% 22%;
+    --glass-bg: 20 22% 12%;
+    --glass-border: 24 18% 24%;
 
-    --gradient-start: 235 30% 8%;
-    --gradient-mid: 250 35% 12%;
-    --gradient-end: 270 30% 10%;
+    --gradient-start: 22 44% 10%;
+    --gradient-mid: 18 30% 8%;
+    --gradient-end: 24 20% 5%;
 
-    --sidebar-background: 230 30% 8%;
-    --sidebar-foreground: 220 20% 80%;
-    --sidebar-primary: 250 85% 65%;
+    --sidebar-background: 20 26% 8%;
+    --sidebar-foreground: 30 18% 82%;
+    --sidebar-primary: 28 92% 61%;
     --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 230 25% 14%;
-    --sidebar-accent-foreground: 220 20% 90%;
-    --sidebar-border: 230 20% 16%;
-    --sidebar-ring: 250 85% 65%;
+    --sidebar-accent: 24 18% 14%;
+    --sidebar-accent-foreground: 30 20% 90%;
+    --sidebar-border: 24 16% 16%;
+    --sidebar-ring: 28 92% 61%;
 
     --success: 150 80% 45%;
     --warning: 40 95% 55%;
@@ -70,18 +70,57 @@
   body {
     @apply bg-background text-foreground font-sans antialiased;
     font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    background:
+      radial-gradient(circle at top left, rgba(249, 115, 22, 0.34), transparent 18%),
+      radial-gradient(circle at top center, rgba(180, 83, 9, 0.16), transparent 24%),
+      radial-gradient(circle at bottom right, rgba(251, 146, 60, 0.14), transparent 22%),
+      linear-gradient(180deg, #24140d 0%, #120e0b 32%, #090807 100%);
+    min-height: 100vh;
+    position: relative;
   }
 
   html {
-    scrollbar-color: hsl(var(--primary)) hsl(var(--sidebar-background));
+    scrollbar-color: #f7b26d #120d0b;
+    scroll-behavior: smooth;
   }
 
   body {
-    scrollbar-color: hsl(var(--primary)) hsl(var(--sidebar-background));
+    scrollbar-color: #f7b26d #120d0b;
   }
 
   * {
     scrollbar-width: thin;
+  }
+
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    background-image: radial-gradient(rgba(255, 188, 120, 0.42) 1px, transparent 1px);
+    background-size: 12px 12px;
+    opacity: 0.34;
+    z-index: -1;
+  }
+
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: linear-gradient(180deg, rgba(33, 19, 12, 0.95) 0%, rgba(14, 10, 8, 0.98) 100%);
+  }
+
+  ::-webkit-scrollbar-thumb {
+    border-radius: 999px;
+    border: 2px solid rgba(24, 14, 11, 0.95);
+    background: linear-gradient(180deg, #ffd39d 0%, #f7b26d 38%, #f97316 100%);
+    box-shadow: 0 0 12px rgba(249, 115, 22, 0.25);
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(180deg, #ffe2bf 0%, #ffb257 48%, #ea580c 100%);
   }
 }
 
@@ -112,7 +151,7 @@
 
   .gradient-text {
     @apply bg-clip-text text-transparent;
-    background-image: linear-gradient(135deg, hsl(var(--neon-blue)), hsl(var(--primary)), hsl(var(--neon-purple)));
+    background-image: linear-gradient(135deg, hsl(var(--accent)), hsl(var(--primary)), hsl(var(--neon-purple)));
   }
 
   .gradient-bg {
@@ -121,10 +160,13 @@
 
   .gradient-mesh {
     background:
-      radial-gradient(ellipse at 20% 50%, hsl(var(--neon-purple) / 0.15) 0%, transparent 50%),
-      radial-gradient(ellipse at 80% 20%, hsl(var(--neon-blue) / 0.1) 0%, transparent 50%),
-      radial-gradient(ellipse at 50% 80%, hsl(var(--neon-indigo) / 0.08) 0%, transparent 50%),
+      radial-gradient(ellipse at 18% 18%, hsl(var(--primary) / 0.22) 0%, transparent 38%),
+      radial-gradient(ellipse at 82% 14%, hsl(var(--neon-blue) / 0.14) 0%, transparent 32%),
+      radial-gradient(ellipse at 18% 82%, hsl(var(--neon-purple) / 0.16) 0%, transparent 34%),
+      radial-gradient(ellipse at 88% 78%, hsl(var(--neon-indigo) / 0.12) 0%, transparent 28%),
+      radial-gradient(rgba(255, 188, 120, 0.22) 1px, transparent 1px),
       linear-gradient(180deg, hsl(var(--gradient-start)), hsl(var(--gradient-end)));
+    background-size: auto, auto, auto, auto, 12px 12px, auto;
   }
 
   .btn-gradient {
@@ -151,7 +193,7 @@
   }
 
   .themed-scrollbar {
-    scrollbar-color: hsl(var(--primary)) rgba(18, 23, 34, 0.9);
+    scrollbar-color: #f7b26d rgba(18, 13, 11, 0.95);
     scrollbar-width: thin;
   }
 
@@ -161,18 +203,18 @@
   }
 
   .themed-scrollbar::-webkit-scrollbar-track {
-    background: linear-gradient(180deg, rgba(18, 23, 34, 0.95) 0%, rgba(23, 27, 40, 0.95) 100%);
+    background: linear-gradient(180deg, rgba(33, 19, 12, 0.95) 0%, rgba(14, 10, 8, 0.98) 100%);
     border-radius: 999px;
   }
 
   .themed-scrollbar::-webkit-scrollbar-thumb {
     border-radius: 999px;
-    border: 2px solid rgba(18, 23, 34, 0.95);
-    background: linear-gradient(180deg, hsl(var(--primary)) 0%, hsl(var(--neon-indigo)) 100%);
-    box-shadow: 0 0 12px hsl(var(--primary) / 0.25);
+    border: 2px solid rgba(24, 14, 11, 0.95);
+    background: linear-gradient(180deg, #ffd39d 0%, #f7b26d 38%, #f97316 100%);
+    box-shadow: 0 0 12px rgba(249, 115, 22, 0.25);
   }
 
   .themed-scrollbar::-webkit-scrollbar-thumb:hover {
-    background: linear-gradient(180deg, hsl(var(--accent)) 0%, hsl(var(--primary)) 100%);
+    background: linear-gradient(180deg, #ffe2bf 0%, #ffb257 48%, #ea580c 100%);
   }
 }
