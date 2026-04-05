@@ -25,6 +25,17 @@ const AdLibrary = () => {
   const [shareCreative, setShareCreative] = useState<CreativeItem | null>(null);
   const [previewCreative, setPreviewCreative] = useState<CreativeItem | null>(null);
   const [previewZoom, setPreviewZoom] = useState(1);
+  const [copiedLink, setCopiedLink] = useState(false);
+
+  const handleCopyLink = async (value: string) => {
+    try {
+      await navigator.clipboard.writeText(value);
+      setCopiedLink(true);
+      window.setTimeout(() => setCopiedLink(false), 1800);
+    } catch {
+      setCopiedLink(false);
+    }
+  };
 
   return (
     <DashboardLayout>
@@ -79,7 +90,7 @@ const AdLibrary = () => {
                       <Eye size={12} className="mr-1 inline-flex" />
                       Preview
                     </button>
-                    <button type="button" onClick={() => setShareCreative(creative)} className="rounded-xl border border-[#3a4a68] bg-[#1b2434] px-3 py-2 text-xs text-muted-foreground transition-all hover:bg-[#253149] hover:text-foreground">
+              <button type="button" onClick={() => { setShareCreative(creative); setCopiedLink(false); }} className="rounded-xl border border-[#3a4a68] bg-[#1b2434] px-3 py-2 text-xs text-muted-foreground transition-all hover:bg-[#253149] hover:text-foreground">
                       <Share2 size={12} className="mr-1 inline-flex" />
                       Share
                     </button>
@@ -133,9 +144,18 @@ const AdLibrary = () => {
               })}
             </div>
             <div className="mt-5 rounded-2xl border border-[#33415a] bg-[#1a2231] p-4">
-              <div className="mb-3 flex items-center gap-2">
-                <LinkIcon size={14} className="text-primary" />
-                <p className="text-sm font-semibold text-foreground">Direct Image Link</p>
+              <div className="mb-3 flex items-center justify-between gap-3">
+                <div className="flex items-center gap-2">
+                  <LinkIcon size={14} className="text-primary" />
+                  <p className="text-sm font-semibold text-foreground">Direct Image Link</p>
+                </div>
+                <button
+                  type="button"
+                  onClick={() => void handleCopyLink(shareCreative.imageUrl)}
+                  className="rounded-xl border border-[#3a4a68] bg-[#101620] px-3 py-2 text-xs font-medium text-foreground transition-all hover:bg-[#253149]"
+                >
+                  {copiedLink ? "Copied" : "Copy"}
+                </button>
               </div>
               <input value={shareCreative.imageUrl} readOnly className="w-full rounded-xl border border-[#3a4a68] bg-[#101620] px-4 py-3 text-sm text-foreground outline-none" />
             </div>

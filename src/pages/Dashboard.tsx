@@ -27,32 +27,26 @@ const campaigns = [
   { name: "Brand Search", platform: "Google Search", status: "Paused", spend: "$1,850", conversions: "128" },
   { name: "Summer Collection", platform: "Instagram", status: "Active", spend: "$3,100", conversions: "256" },
 ];
-const libraryItems = [
-  {
-    id: "library-instagram",
-    title: "Aura Summer Launch",
-    platform: "Instagram",
-    createdAt: "2 hours ago",
-    imageUrl: demoLibraryCreatives[0].imageUrl,
-    aspectClass: "aspect-square",
-  },
-  {
-    id: "library-facebook",
-    title: "Yummzi Product Banner",
-    platform: "Facebook",
-    createdAt: "5 hours ago",
-    imageUrl: demoLibraryCreatives[1].imageUrl,
-    aspectClass: "aspect-[1.91/1]",
-  },
-  {
-    id: "library-whatsapp",
-    title: "Beezo Status Story",
-    platform: "WhatsApp",
-    createdAt: "1 day ago",
-    imageUrl: demoLibraryCreatives[2].imageUrl,
-    aspectClass: "aspect-[9/16]",
-  },
-];
+const libraryItems = demoLibraryCreatives.slice(0, 3).map((creative) => ({
+  id: creative.sessionId,
+  title: creative.title,
+  platform:
+    creative.platformId === "instagram"
+      ? "Instagram"
+      : creative.platformId === "facebook"
+        ? "Facebook"
+        : creative.platformId === "whatsapp"
+          ? "WhatsApp"
+          : "Website",
+  createdAt: creative.createdAtLabel,
+  imageUrl: creative.imageUrl,
+  aspectClass:
+    creative.platformId === "instagram"
+      ? "aspect-square"
+      : creative.platformId === "whatsapp"
+        ? "aspect-[9/16]"
+        : "aspect-[1.91/1]",
+}));
 
 const Dashboard = () => (
   <DashboardLayout>

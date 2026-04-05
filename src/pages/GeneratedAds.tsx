@@ -142,11 +142,11 @@ const renderCreativeCanvas = async (creative: CreativeItem) => {
   ctx.textAlign = "center";
   ctx.fillStyle = theme.title;
   ctx.font = `${Math.round(width * 0.065)}px Georgia`;
-  ctx.fillText("AURA", width / 2, cardY + Math.round(topAreaHeight * 0.42));
+  ctx.fillText("THREAD & TONE", width / 2, cardY + Math.round(topAreaHeight * 0.42));
 
   ctx.fillStyle = theme.body;
   ctx.font = `${Math.round(width * 0.034)}px Arial`;
-  ctx.fillText("THE SCENT OF ETERNAL SUMMER", width / 2, cardY + Math.round(topAreaHeight * 0.78));
+  ctx.fillText("NEW SEASON GARMENT ESSENTIALS", width / 2, cardY + Math.round(topAreaHeight * 0.78));
 
   drawContainedImage(ctx, image, imageX, imageY, imageW, imageH, Math.round(width * 0.03));
   ctx.strokeStyle = theme.border;
@@ -165,7 +165,7 @@ const renderCreativeCanvas = async (creative: CreativeItem) => {
 
   ctx.fillStyle = theme.buttonText;
   ctx.font = `${Math.round(width * 0.03)}px Arial`;
-  ctx.fillText("DISCOVER THE COLLECTION", width / 2, buttonY + buttonHeight / 2 + Math.round(width * 0.01));
+  ctx.fillText("SHOP THE DROP", width / 2, buttonY + buttonHeight / 2 + Math.round(width * 0.01));
 
   return canvas;
 };
@@ -197,14 +197,14 @@ const CreativePoster = ({ creative }: { creative: CreativeItem }) => (
     >
       <div className="flex h-full flex-col rounded-[1rem] border border-[#b8923f] bg-white/92 p-5 text-center">
         <div>
-          <p className="text-[2.4rem] tracking-wide text-[#c8a44b]">AURA</p>
-          <p className="mt-3 text-lg uppercase tracking-wide text-[#14294c]">The Scent Of Eternal Summer</p>
+          <p className="text-[2.2rem] tracking-wide text-[#c8a44b]">THREAD & TONE</p>
+          <p className="mt-3 text-lg uppercase tracking-wide text-[#14294c]">New Season Garment Essentials</p>
         </div>
         <div className="mt-5 flex-1 overflow-hidden rounded-[0.9rem] border border-[#d4bd7d]">
           <img src={creative.imageUrl} alt={`${platformMeta[creative.platformId].label} fashion creative`} className="h-full w-full object-cover" />
         </div>
         <button className="mt-5 rounded-md border border-[#b8923f] bg-[#10294d] px-6 py-3 text-sm tracking-wide text-[#f0cd72]">
-          DISCOVER THE COLLECTION
+          SHOP THE DROP
         </button>
       </div>
     </div>
@@ -299,11 +299,21 @@ const GeneratedAds = () => {
   const [shareCreative, setShareCreative] = useState<CreativeItem | null>(null);
   const [previewCreative, setPreviewCreative] = useState<CreativeItem | null>(null);
   const [previewZoom, setPreviewZoom] = useState(1);
+  const [copiedLink, setCopiedLink] = useState(false);
   const timeoutRef = useRef<number | null>(null);
   const autoStartedRef = useRef(false);
   const threadRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => () => { if (timeoutRef.current) window.clearTimeout(timeoutRef.current); }, []);
+  const handleCopyLink = async (value: string) => {
+    try {
+      await navigator.clipboard.writeText(value);
+      setCopiedLink(true);
+      window.setTimeout(() => setCopiedLink(false), 1800);
+    } catch {
+      setCopiedLink(false);
+    }
+  };
   const activeSession = sessions.find((session) => session.id === activeSessionId) ?? sessions[0] ?? null;
   useEffect(() => {
     const requestedSessionId = searchParams.get("session");
@@ -447,7 +457,10 @@ const GeneratedAds = () => {
                             setPreviewCreative(creative);
                             setPreviewZoom(1);
                           }}
-                          onShare={() => setShareCreative(creative)}
+                          onShare={() => {
+                            setShareCreative(creative);
+                            setCopiedLink(false);
+                          }}
                           onDownload={() => void downloadCreativeImage(creative)}
                         />
                       ))}
@@ -484,7 +497,7 @@ const GeneratedAds = () => {
                     const creative = message.creativeId ? creatives.find((item) => item.id === message.creativeId) : null;
                     return <div key={message.id} className={`${message.role === "user" ? "ml-auto max-w-2xl" : "max-w-4xl"}`}>
                       <div className="mb-3 flex items-center gap-3 text-sm text-muted-foreground"><span className={`flex h-11 w-11 items-center justify-center rounded-full ${message.role === "assistant" ? "bg-amber-400 text-black" : "bg-primary/20 text-primary"}`}>{message.role === "assistant" ? <Bot size={18} /> : <Send size={18} />}</span><span className="font-medium text-foreground">{message.role === "assistant" ? "VC Assistant" : "You"}</span></div>
-                      {message.kind === "summary" ? <div className="overflow-hidden rounded-[1.75rem] border border-[#1e8f42] bg-[linear-gradient(180deg,#0fc54a_0%,#0ca33f_100%)] text-white shadow-[0_18px_45px_rgba(13,182,63,0.18)]"><div className="border-b border-white/20 bg-white/5 px-5 py-4"><p className="text-sm font-semibold">Creative Brief Summary</p></div><div className="grid gap-0 sm:grid-cols-2">{[["Post Description", creativeConfig.postDescription || "Not specified"], ["Headline", creativeConfig.headline || "Not specified"], ["Call To Action", creativeConfig.cta || "Not specified"], ["Post Type", creativeConfig.selectedPostType || "Not specified"], ["Color Palette", creativeConfig.selectedPalette || "Not specified"], ["Uploaded Files", uploadedAssets.map((file) => file.name).join(", ") || "None"]].map(([label, value], index) => <div key={label} className={`px-5 py-4 ${index < 4 ? "border-b border-white/15" : ""} ${index % 2 === 0 ? "sm:border-r sm:border-white/15" : ""}`}><p className="text-xs uppercase tracking-[0.16em] text-white/70">{label}</p><p className="mt-2 text-base font-medium text-white">{value}</p></div>)}</div></div> : message.kind === "creative" && creative ? <div className="overflow-hidden rounded-[2rem] border border-[#31405b] bg-[linear-gradient(180deg,#171e2a_0%,#121926_100%)] shadow-[0_18px_60px_rgba(0,0,0,0.28)]"><button type="button" onClick={() => { setPreviewCreative(creative); setPreviewZoom(1); }} className="relative flex w-full items-center justify-center bg-[linear-gradient(180deg,#1a2334_0%,#131b29_100%)] px-6 py-8"><CreativePoster creative={creative} /></button><div className="border-t border-[#31405b] bg-[#192131] px-5 py-4"><p className="text-sm text-muted-foreground">Your creative is ready. Use the chat below to make adjustments.</p></div><div className="flex flex-wrap gap-2 px-5 py-4"><button type="button" onClick={() => setShareCreative(creative)} className="rounded-2xl border border-[#3a4a68] bg-[#1c2433] px-3 py-2 text-xs text-muted-foreground hover:bg-[#253149]"><Share2 size={12} className="mr-1 inline-flex" />Share</button><button type="button" onClick={() => void downloadCreativeImage(creative)} className="rounded-2xl border border-[#3a4a68] bg-[#1c2433] px-3 py-2 text-xs text-muted-foreground hover:bg-[#253149]"><FileImage size={12} className="mr-1 inline-flex" />Download Image</button><button type="button" onClick={() => void openCreativePdfPreview(creative)} className="rounded-2xl border border-[#3a4a68] bg-[#1c2433] px-3 py-2 text-xs text-muted-foreground hover:bg-[#253149]"><FileText size={12} className="mr-1 inline-flex" />Download PDF</button></div></div> : <div className={`rounded-[1.75rem] px-5 py-4 ${message.role === "assistant" ? "border border-[#31405b] bg-[linear-gradient(180deg,#1a2232_0%,#161d2a_100%)] text-foreground shadow-[0_10px_30px_rgba(0,0,0,0.18)]" : "bg-[linear-gradient(180deg,#11c84b_0%,#089d39_100%)] text-white shadow-[0_14px_30px_rgba(8,177,60,0.18)]"}`}><p className="whitespace-pre-line text-sm leading-8">{message.text}</p></div>}
+                      {message.kind === "summary" ? <div className="overflow-hidden rounded-[1.75rem] border border-[#1e8f42] bg-[linear-gradient(180deg,#0fc54a_0%,#0ca33f_100%)] text-white shadow-[0_18px_45px_rgba(13,182,63,0.18)]"><div className="border-b border-white/20 bg-white/5 px-5 py-4"><p className="text-sm font-semibold">Creative Brief Summary</p></div><div className="grid gap-0 sm:grid-cols-2">{[["Post Description", creativeConfig.postDescription || "Not specified"], ["Headline", creativeConfig.headline || "Not specified"], ["Call To Action", creativeConfig.cta || "Not specified"], ["Post Type", creativeConfig.selectedPostType || "Not specified"], ["Color Palette", creativeConfig.selectedPalette || "Not specified"], ["Uploaded Files", uploadedAssets.map((file) => file.name).join(", ") || "None"]].map(([label, value], index) => <div key={label} className={`px-5 py-4 ${index < 4 ? "border-b border-white/15" : ""} ${index % 2 === 0 ? "sm:border-r sm:border-white/15" : ""}`}><p className="text-xs uppercase tracking-[0.16em] text-white/70">{label}</p><p className="mt-2 text-base font-medium text-white">{value}</p></div>)}</div></div> : message.kind === "creative" && creative ? <div className="overflow-hidden rounded-[2rem] border border-[#31405b] bg-[linear-gradient(180deg,#171e2a_0%,#121926_100%)] shadow-[0_18px_60px_rgba(0,0,0,0.28)]"><button type="button" onClick={() => { setPreviewCreative(creative); setPreviewZoom(1); }} className="relative flex w-full items-center justify-center bg-[linear-gradient(180deg,#1a2334_0%,#131b29_100%)] px-6 py-8"><CreativePoster creative={creative} /></button><div className="border-t border-[#31405b] bg-[#192131] px-5 py-4"><p className="text-sm text-muted-foreground">Your creative is ready. Use the chat below to make adjustments.</p></div><div className="flex flex-wrap gap-2 px-5 py-4"><button type="button" onClick={() => { setShareCreative(creative); setCopiedLink(false); }} className="rounded-2xl border border-[#3a4a68] bg-[#1c2433] px-3 py-2 text-xs text-muted-foreground hover:bg-[#253149]"><Share2 size={12} className="mr-1 inline-flex" />Share</button><button type="button" onClick={() => void downloadCreativeImage(creative)} className="rounded-2xl border border-[#3a4a68] bg-[#1c2433] px-3 py-2 text-xs text-muted-foreground hover:bg-[#253149]"><FileImage size={12} className="mr-1 inline-flex" />Download Image</button><button type="button" onClick={() => void openCreativePdfPreview(creative)} className="rounded-2xl border border-[#3a4a68] bg-[#1c2433] px-3 py-2 text-xs text-muted-foreground hover:bg-[#253149]"><FileText size={12} className="mr-1 inline-flex" />Download PDF</button></div></div> : <div className={`rounded-[1.75rem] px-5 py-4 ${message.role === "assistant" ? "border border-[#31405b] bg-[linear-gradient(180deg,#1a2232_0%,#161d2a_100%)] text-foreground shadow-[0_10px_30px_rgba(0,0,0,0.18)]" : "bg-[linear-gradient(180deg,#11c84b_0%,#089d39_100%)] text-white shadow-[0_14px_30px_rgba(8,177,60,0.18)]"}`}><p className="whitespace-pre-line text-sm leading-8">{message.text}</p></div>}
                     </div>;
                   })}
                   {isGenerating && generationContext && <div className="max-w-3xl"><div className="mb-3 flex items-center gap-3 text-sm text-muted-foreground"><span className="flex h-11 w-11 items-center justify-center rounded-full bg-amber-400 text-black"><LoaderCircle size={18} className="animate-spin" /></span><span className="font-medium text-foreground">VC Assistant</span></div><div className="rounded-[1.75rem] border border-[#31405b] bg-[linear-gradient(180deg,#1a2232_0%,#161d2a_100%)] px-5 py-4 shadow-[0_10px_30px_rgba(0,0,0,0.18)]"><p className="text-sm leading-8 text-foreground">I've processed your request for {platformMeta[generationContext.platformId].label}. I'm now generating creative visuals and preparing the response.</p></div></div>}
@@ -512,7 +525,7 @@ const GeneratedAds = () => {
           </div>
         </section>
       </div>
-      {shareCreative && <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 px-4"><div className="w-full max-w-xl rounded-[1.75rem] border border-[#33415a] bg-[#151b24] p-6 shadow-[0_18px_60px_rgba(0,0,0,0.35)]"><div className="mb-5 flex items-center justify-between"><div><h3 className="text-xl font-semibold text-foreground">Share Creative</h3><p className="mt-1 text-sm text-muted-foreground">Choose a platform or open a custom link.</p></div><button type="button" onClick={() => setShareCreative(null)} className="rounded-xl border border-[#3a4a68] bg-[#1b2434] p-2 text-muted-foreground hover:bg-[#253149]"><X size={16} /></button></div><div className="grid gap-3 sm:grid-cols-2">{(Object.keys(platformMeta) as PlatformId[]).map((platformId) => { const platform = platformMeta[platformId]; const Icon = platform.icon; const previewUrl = shareCreative.imageUrl; const text = `${shareCreative.title} - ${shareCreative.caption}`; const generatedShareUrl = platform.shareUrl(previewUrl, text); return <button key={platformId} type="button" onClick={() => window.open(generatedShareUrl, "_blank", "width=900,height=700")} className="rounded-2xl border border-[#33415a] bg-[#1a2231] px-4 py-4 text-left transition-all hover:border-[#4a5f80] hover:bg-[#202a3d]"><div className="mb-2 flex items-center gap-3"><div className="flex h-10 w-10 items-center justify-center rounded-full bg-primary/15 text-primary"><Icon size={18} /></div><span className="text-sm font-semibold text-foreground">{platform.label}</span></div><p className="text-xs text-muted-foreground">Open sharing popup for {platform.label}</p></button>; })}</div><div className="mt-5 rounded-2xl border border-[#33415a] bg-[#1a2231] p-4"><div className="mb-3 flex items-center gap-2"><LinkIcon size={14} className="text-primary" /><p className="text-sm font-semibold text-foreground">Custom Open Link</p></div><input value={shareCreative.imageUrl} readOnly className="w-full rounded-xl border border-[#3a4a68] bg-[#101620] px-4 py-3 text-sm text-foreground outline-none" /></div></div></div>}
+      {shareCreative && <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 px-4"><div className="w-full max-w-xl rounded-[1.75rem] border border-[#33415a] bg-[#151b24] p-6 shadow-[0_18px_60px_rgba(0,0,0,0.35)]"><div className="mb-5 flex items-center justify-between"><div><h3 className="text-xl font-semibold text-foreground">Share Creative</h3><p className="mt-1 text-sm text-muted-foreground">Choose a platform or open a custom link.</p></div><button type="button" onClick={() => setShareCreative(null)} className="rounded-xl border border-[#3a4a68] bg-[#1b2434] p-2 text-muted-foreground hover:bg-[#253149]"><X size={16} /></button></div><div className="grid gap-3 sm:grid-cols-2">{(Object.keys(platformMeta) as PlatformId[]).map((platformId) => { const platform = platformMeta[platformId]; const Icon = platform.icon; const previewUrl = shareCreative.imageUrl; const text = `${shareCreative.title} - ${shareCreative.caption}`; const generatedShareUrl = platform.shareUrl(previewUrl, text); return <button key={platformId} type="button" onClick={() => window.open(generatedShareUrl, "_blank", "width=900,height=700")} className="rounded-2xl border border-[#33415a] bg-[#1a2231] px-4 py-4 text-left transition-all hover:border-[#4a5f80] hover:bg-[#202a3d]"><div className="mb-2 flex items-center gap-3"><div className="flex h-10 w-10 items-center justify-center rounded-full bg-primary/15 text-primary"><Icon size={18} /></div><span className="text-sm font-semibold text-foreground">{platform.label}</span></div><p className="text-xs text-muted-foreground">Open sharing popup for {platform.label}</p></button>; })}</div><div className="mt-5 rounded-2xl border border-[#33415a] bg-[#1a2231] p-4"><div className="mb-3 flex items-center justify-between gap-3"><div className="flex items-center gap-2"><LinkIcon size={14} className="text-primary" /><p className="text-sm font-semibold text-foreground">Custom Open Link</p></div><button type="button" onClick={() => void handleCopyLink(shareCreative.imageUrl)} className="rounded-xl border border-[#3a4a68] bg-[#101620] px-3 py-2 text-xs font-medium text-foreground transition-all hover:bg-[#253149]">{copiedLink ? "Copied" : "Copy"}</button></div><input value={shareCreative.imageUrl} readOnly className="w-full rounded-xl border border-[#3a4a68] bg-[#101620] px-4 py-3 text-sm text-foreground outline-none" /></div></div></div>}
       {previewCreative && <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 px-4"><div className="w-full max-w-5xl rounded-[1.75rem] border border-[#33415a] bg-[#151b24] p-5 shadow-[0_18px_60px_rgba(0,0,0,0.35)]"><div className="mb-4 flex items-center justify-between"><div><h3 className="text-xl font-semibold text-foreground">{previewCreative.title}</h3><p className="mt-1 text-sm text-muted-foreground">{platformMeta[previewCreative.platformId].label} preview</p></div><div className="flex items-center gap-2"><button type="button" onClick={() => setPreviewZoom((current) => Math.max(0.8, current - 0.1))} className="rounded-xl border border-[#3a4a68] bg-[#1b2434] p-2 text-muted-foreground hover:bg-[#253149]"><ZoomOut size={16} /></button><button type="button" onClick={() => setPreviewZoom((current) => Math.min(2, current + 0.1))} className="rounded-xl border border-[#3a4a68] bg-[#1b2434] p-2 text-muted-foreground hover:bg-[#253149]"><ZoomIn size={16} /></button><button type="button" onClick={() => setPreviewCreative(null)} className="rounded-xl border border-[#3a4a68] bg-[#1b2434] p-2 text-muted-foreground hover:bg-[#253149]"><X size={16} /></button></div></div><div className="themed-scrollbar max-h-[78vh] overflow-auto rounded-[1.5rem] border border-[#33415a] bg-[#0d131d] px-6 py-8"><div className="flex justify-center"><div style={{ transform: `scale(${previewZoom})` }} className="origin-top transition-transform duration-200"><CreativePoster creative={previewCreative} /></div></div></div></div></div>}
     </DashboardLayout>
   );

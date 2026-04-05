@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useRef, useState } from "react";
-import { Bot, Facebook, Globe, Instagram, LoaderCircle, MessageCircle, Send } from "lucide-react";
+import { Bot, ChevronLeft, ChevronRight, Facebook, Globe, Instagram, LoaderCircle, MessageCircle, Send } from "lucide-react";
 import { useSearchParams } from "react-router-dom";
 import DashboardLayout from "@/components/DashboardLayout";
 import { demoLibraryCreatives, demoLibrarySessions } from "@/lib/demoCreativeLibrary";
@@ -21,6 +21,7 @@ const ChatHistory = () => {
   const [activeSessionId, setActiveSessionId] = useState(searchParams.get("session") ?? demoLibrarySessions[0]?.id ?? "");
   const [chatInput, setChatInput] = useState("");
   const [isReplying, setIsReplying] = useState(false);
+  const [historyCollapsed, setHistoryCollapsed] = useState(false);
   const threadRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -83,42 +84,79 @@ const ChatHistory = () => {
 
   return (
     <DashboardLayout>
-      <div className="grid min-h-[calc(100vh-9rem)] gap-0 overflow-hidden rounded-[2rem] border border-[#2a3446] bg-[linear-gradient(135deg,#091018_0%,#0d1220_45%,#121021_100%)] shadow-[0_24px_80px_hsl(230_30%_4%_/_0.45)] lg:grid-cols-[320px_minmax(0,1fr)]">
+      <div
+        className="grid h-full min-h-0 gap-0 overflow-hidden rounded-[2rem] border border-[#2a3446] bg-[linear-gradient(135deg,#091018_0%,#0d1220_45%,#121021_100%)] shadow-[0_24px_80px_hsl(230_30%_4%_/_0.45)] transition-all duration-300 ease-in-out"
+        style={{ gridTemplateColumns: historyCollapsed ? "56px minmax(0,1fr)" : "320px minmax(0,1fr)" }}
+      >
         <aside className="flex min-h-0 flex-col border-r border-[#31405b] bg-[linear-gradient(180deg,#121722_0%,#171b28_100%)]">
-          <div className="border-b border-[#31405b] bg-[#151b28] px-5 py-5">
-            <h1 className="text-lg font-semibold text-foreground">Previous Chats</h1>
-            <p className="mt-1 text-xs text-muted-foreground">Open any saved conversation and continue chatting from the same thread.</p>
+          <div className={`flex items-center justify-between border-b border-[#31405b] bg-[#151b28] transition-all duration-300 ease-in-out ${historyCollapsed ? "px-2 py-3" : "px-5 py-5"}`}>
+            <div className={`overflow-hidden transition-all duration-300 ease-in-out ${historyCollapsed ? "max-w-0 opacity-0" : "max-w-xs opacity-100"}`}>
+              <h1 className="text-lg font-semibold text-foreground">Previous Chats</h1>
+              <p className="mt-1 text-xs text-muted-foreground">Open any saved conversation and continue chatting from the same thread.</p>
+            </div>
+            <button
+              type="button"
+              onClick={() => setHistoryCollapsed((current) => !current)}
+              className={`shrink-0 rounded-full border border-[#3a4a68] bg-[#1c2433] text-muted-foreground transition-all hover:bg-[#273247] hover:text-foreground ${historyCollapsed ? "mx-auto h-9 w-9" : "h-9 w-9"}`}
+            >
+              {historyCollapsed ? <ChevronRight size={14} className="mx-auto" /> : <ChevronLeft size={14} className="mx-auto" />}
+            </button>
           </div>
-          <div className="flex-1 space-y-3 overflow-y-auto px-4 py-4">
-            {sessions.map((session) => {
-              const Icon = platformMeta[session.platformId].icon;
-              const selected = activeSession?.id === session.id;
-              const lastAssistantMessage = session.messages.filter((message) => message.role === "assistant").slice(-1)[0]?.text;
+          <div className={`flex-1 overflow-y-auto transition-all duration-300 ease-in-out ${historyCollapsed ? "px-2 py-3" : "px-4 py-4"}`}>
+            {historyCollapsed ? (
+              <div className="space-y-2">
+                {sessions.map((session) => {
+                  const Icon = platformMeta[session.platformId].icon;
+                  const selected = activeSession?.id === session.id;
 
-              return (
-                <button
-                  key={session.id}
-                  type="button"
-                  onClick={() => setActiveSessionId(session.id)}
-                  className={`w-full rounded-[1.4rem] border p-4 text-left transition-all ${
-                    selected
-                      ? "border-primary bg-[linear-gradient(180deg,rgba(86,74,255,0.18)_0%,rgba(86,74,255,0.08)_100%)] shadow-[0_0_0_1px_hsl(var(--primary)/0.18)]"
-                      : "border-[#33415a] bg-[#1a2231] hover:border-[#4a5f80] hover:bg-[#202a3d]"
-                  }`}
-                >
-                  <div className="flex items-center justify-between gap-3">
-                    <div className="flex items-center gap-2">
-                      <div className="flex h-9 w-9 items-center justify-center rounded-full bg-primary/15 text-primary">
-                        <Icon size={16} />
+                  return (
+                    <button
+                      key={session.id}
+                      type="button"
+                      onClick={() => setActiveSessionId(session.id)}
+                      className={`flex h-11 w-11 items-center justify-center rounded-2xl border transition-all ${
+                        selected ? "border-primary bg-primary/10 text-primary" : "border-[#33415a] bg-[#1a2231] text-muted-foreground hover:border-[#4a5f80] hover:text-foreground"
+                      }`}
+                      title={session.title}
+                    >
+                      <Icon size={16} />
+                    </button>
+                  );
+                })}
+              </div>
+            ) : (
+              <div className="space-y-3">
+                {sessions.map((session) => {
+                  const Icon = platformMeta[session.platformId].icon;
+                  const selected = activeSession?.id === session.id;
+                  const lastAssistantMessage = session.messages.filter((message) => message.role === "assistant").slice(-1)[0]?.text;
+
+                  return (
+                    <button
+                      key={session.id}
+                      type="button"
+                      onClick={() => setActiveSessionId(session.id)}
+                      className={`w-full rounded-[1.4rem] border p-4 text-left transition-all ${
+                        selected
+                          ? "border-primary bg-[linear-gradient(180deg,rgba(86,74,255,0.18)_0%,rgba(86,74,255,0.08)_100%)] shadow-[0_0_0_1px_hsl(var(--primary)/0.18)]"
+                          : "border-[#33415a] bg-[#1a2231] hover:border-[#4a5f80] hover:bg-[#202a3d]"
+                      }`}
+                    >
+                      <div className="flex items-center justify-between gap-3">
+                        <div className="flex items-center gap-2">
+                          <div className="flex h-9 w-9 items-center justify-center rounded-full bg-primary/15 text-primary">
+                            <Icon size={16} />
+                          </div>
+                          <span className="text-sm font-semibold text-foreground">{session.title}</span>
+                        </div>
+                        <span className="text-[11px] text-muted-foreground">{session.createdAtLabel}</span>
                       </div>
-                      <span className="text-sm font-semibold text-foreground">{session.title}</span>
-                    </div>
-                    <span className="text-[11px] text-muted-foreground">{session.createdAtLabel}</span>
-                  </div>
-                  <p className="mt-3 line-clamp-2 text-xs leading-5 text-muted-foreground">{lastAssistantMessage}</p>
-                </button>
-              );
-            })}
+                      <p className="mt-3 line-clamp-2 text-xs leading-5 text-muted-foreground">{lastAssistantMessage}</p>
+                    </button>
+                  );
+                })}
+              </div>
+            )}
           </div>
         </aside>
 
@@ -133,7 +171,7 @@ const ChatHistory = () => {
             </div>
           </div>
 
-          <div ref={threadRef} className="flex-1 overflow-y-auto px-6 py-8">
+          <div ref={threadRef} className="flex-1 overflow-y-auto px-6 py-6">
             <div className="mx-auto flex w-full max-w-5xl flex-col gap-8">
               {(activeSession?.messages ?? []).map((message) => (
                 <div key={message.id} className={`${message.role === "user" ? "ml-auto max-w-2xl" : "max-w-4xl"}`}>
@@ -181,25 +219,25 @@ const ChatHistory = () => {
               ) : null}
             </div>
           </div>
-          <div className="border-t border-[#31405b] bg-[linear-gradient(180deg,#101620_0%,#0d131d_100%)] px-6 py-5">
-            <div className="mx-auto w-full max-w-5xl">
+          <div className="border-t border-[#31405b] bg-[linear-gradient(180deg,#101620_0%,#0d131d_100%)] px-6 py-2">
+            <div className="mx-auto w-full max-w-3xl">
               <div className="relative">
-                <div className="rounded-[1.75rem] border border-[#3a4a68] bg-[linear-gradient(180deg,#182131_0%,#141b28_100%)] p-3 pr-24 shadow-[0_14px_40px_rgba(0,0,0,0.22)]">
+                <div className="rounded-full border border-[#3a4a68] bg-[linear-gradient(180deg,#182131_0%,#141b28_100%)] px-4 py-2 pr-16 shadow-[0_14px_40px_rgba(0,0,0,0.22)]">
                   <textarea
                     value={chatInput}
                     onChange={(event) => setChatInput(event.target.value)}
                     disabled={isReplying}
-                    rows={3}
+                    rows={1}
                     placeholder="Continue this saved conversation from where you left off."
-                    className="w-full resize-none bg-transparent px-2 py-2 text-sm leading-7 text-foreground outline-none placeholder:text-muted-foreground/65"
+                    className="max-h-24 w-full resize-none bg-transparent py-1 text-sm leading-6 text-foreground outline-none placeholder:text-muted-foreground/65"
                   />
                 </div>
-                <div className="absolute bottom-4 right-4 flex items-center gap-2">
+                <div className="absolute right-3 top-1/2 -translate-y-1/2 flex items-center gap-2">
                   <button
                     type="button"
                     onClick={handleSend}
                     disabled={isReplying || !chatInput.trim()}
-                    className={`flex h-11 w-11 items-center justify-center rounded-full transition-all ${
+                    className={`flex h-9 w-9 items-center justify-center rounded-full transition-all ${
                       isReplying || !chatInput.trim()
                         ? "cursor-not-allowed bg-secondary text-muted-foreground"
                         : "bg-[linear-gradient(180deg,#11c84b_0%,#089d39_100%)] text-white shadow-[0_14px_30px_rgba(8,177,60,0.18)] hover:brightness-110"
