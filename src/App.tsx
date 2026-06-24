@@ -15,6 +15,8 @@ import ChatHistory from "./pages/ChatHistory";
 import Refinement from "./pages/Refinement";
 import BrandProfile from "./pages/BrandProfile";
 import Analytics from "./pages/Analytics";
+import PreviousWork from "./pages/PreviousWork";
+import PreviousWorkDetail from "./pages/PreviousWorkDetail";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -38,6 +40,8 @@ const App = () => (
           <Route path="/refinement" element={<Refinement />} />
           <Route path="/brand-profile" element={<BrandProfile />} />
           <Route path="/analytics" element={<Analytics />} />
+          <Route path="/previous-work" element={<PreviousWork />} />
+          <Route path="/previous-work/:slug" element={<PreviousWorkDetail />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>

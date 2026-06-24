@@ -1,9 +1,11 @@
+import { useState } from "react";
 import { motion } from "framer-motion";
-import { TrendingUp, DollarSign, MousePointer, Eye, PlusCircle, ArrowRight, MoreHorizontal, FolderOpen, MessagesSquare } from "lucide-react";
+import { TrendingUp, DollarSign, MousePointer, Eye, PlusCircle, ArrowRight, MoreHorizontal, FolderOpen, MessagesSquare, Sparkles, ChevronDown } from "lucide-react";
 import { Link } from "react-router-dom";
 import DashboardLayout from "@/components/DashboardLayout";
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, LineChart, Line } from "recharts";
 import { demoLibraryCreatives } from "@/lib/demoCreativeLibrary";
+import { previousWorkProjects } from "@/lib/previousWork";
 
 const chartData = [
   { name: "Jan", revenue: 4200, clicks: 2400 },
@@ -48,9 +50,14 @@ const libraryItems = demoLibraryCreatives.slice(0, 3).map((creative) => ({
         : "aspect-[1.91/1]",
 }));
 
-const Dashboard = () => (
-  <DashboardLayout>
-    <div className="space-y-6">
+const previousWorks = previousWorkProjects.slice(0, 4);
+
+const Dashboard = () => {
+  const [previousWorkOpen, setPreviousWorkOpen] = useState(false);
+
+  return (
+    <DashboardLayout>
+      <div className="space-y-6">
       {/* Welcome */}
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <div>
@@ -189,6 +196,100 @@ const Dashboard = () => (
         </div>
       </div>
 
+      <motion.div
+        initial={{ opacity: 0, y: 10 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.12 }}
+        className="overflow-hidden rounded-[2rem] border border-[#5a412e] bg-[radial-gradient(circle_at_top_left,rgba(247,178,109,0.16),transparent_28%),linear-gradient(145deg,#18120f_0%,#120e0c_60%,#0f0c0b_100%)] shadow-[0_20px_60px_rgba(0,0,0,0.28)]"
+      >
+        <button
+          type="button"
+          onClick={() => setPreviousWorkOpen((current) => !current)}
+          className="w-full p-6 text-left transition-colors hover:bg-white/[0.015]"
+        >
+          <div className="flex flex-col gap-5 lg:flex-row lg:items-center lg:justify-between">
+            <div className="flex items-start gap-4">
+              <div className="flex h-14 w-14 items-center justify-center rounded-[1.25rem] border border-primary/20 bg-primary/10 text-primary shadow-[0_0_30px_rgba(247,178,109,0.12)]">
+                <Sparkles size={22} />
+              </div>
+              <div>
+                <div className="mb-2 inline-flex items-center rounded-full border border-[#6b4b33] bg-[#241913] px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.22em] text-[#f7c28d]">
+                  Previous Work
+                </div>
+                <h3 className="text-xl font-bold text-foreground sm:text-2xl">Explore premium campaign work we have already brought to life</h3>
+                <p className="mt-2 max-w-3xl text-sm leading-7 text-muted-foreground">
+                  Tap into polished past executions, from luxury product launches to high-converting lead generation systems, all presented in the same refined dashboard language.
+                </p>
+              </div>
+            </div>
+            <div className="flex items-center gap-4 self-start rounded-[1.25rem] border border-[#5a412e] bg-[#17110f]/90 px-4 py-3 shadow-[inset_0_1px_0_rgba(255,255,255,0.04)]">
+              <div>
+                <p className="text-[10px] uppercase tracking-[0.2em] text-muted-foreground">Showcase</p>
+                <p className="mt-1 text-sm font-semibold text-foreground">{previousWorks.length} premium case studies</p>
+              </div>
+              <div className={`rounded-full border border-[#6b4b33] bg-[#221711] p-2 text-primary transition-transform ${previousWorkOpen ? "rotate-180" : ""}`}>
+                <ChevronDown size={16} />
+              </div>
+            </div>
+          </div>
+        </button>
+
+        {previousWorkOpen && (
+          <div className="border-t border-[#3a2a1f] px-6 pb-6 pt-2">
+            <div className="grid gap-4 xl:grid-cols-2">
+              {previousWorks.map((work, index) => (
+                <motion.div
+                  key={work.title}
+                  initial={{ opacity: 0, y: 18 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: index * 0.06 }}
+                  className="group relative overflow-hidden rounded-[1.75rem] border border-[#5a412e] bg-[linear-gradient(160deg,rgba(34,24,18,0.96)_0%,rgba(19,14,12,0.98)_100%)] p-5 shadow-[0_18px_45px_rgba(0,0,0,0.22)] transition-all duration-300 hover:-translate-y-3 hover:scale-[1.015] hover:border-[#8a6240] hover:shadow-[0_30px_70px_rgba(0,0,0,0.34)]"
+                >
+                  <div className={`pointer-events-none absolute inset-0 bg-gradient-to-br ${work.accent} opacity-100 transition-opacity duration-300 group-hover:opacity-80`} />
+                  <div className="relative">
+                    <div className="flex items-start justify-between gap-4">
+                      <div>
+                        <span className="inline-flex rounded-full border border-white/10 bg-white/[0.04] px-3 py-1 text-[10px] uppercase tracking-[0.16em] text-[#f4c899]">
+                          {work.category}
+                        </span>
+                        <h4 className="mt-4 text-lg font-semibold text-foreground">{work.title}</h4>
+                      </div>
+                      <div className="flex h-11 w-11 items-center justify-center rounded-2xl border border-primary/15 bg-primary/10 text-primary">
+                        <work.icon size={18} />
+                      </div>
+                    </div>
+
+                    <p className="mt-4 text-sm leading-7 text-muted-foreground">{work.summary}</p>
+
+                    <div className="mt-6 grid grid-cols-2 gap-3">
+                      <div className="rounded-[1.25rem] border border-white/10 bg-white/[0.035] p-4">
+                        <p className="text-[10px] uppercase tracking-[0.18em] text-muted-foreground">Headline Result</p>
+                        <p className="mt-2 text-xl font-bold text-foreground">{work.metric}</p>
+                      </div>
+                      <div className="rounded-[1.25rem] border border-white/10 bg-white/[0.03] p-4">
+                        <p className="text-[10px] uppercase tracking-[0.18em] text-muted-foreground">Impact Note</p>
+                        <p className="mt-2 text-sm font-medium text-foreground">{work.detail}</p>
+                      </div>
+                    </div>
+
+                    <div className="mt-5 flex items-center justify-between border-t border-white/10 pt-4">
+                      <p className="text-xs text-muted-foreground">Premium delivery across strategy, copy, and creative direction</p>
+                      <Link
+                        to={`/previous-work/${work.slug}`}
+                        className="inline-flex items-center gap-2 text-xs font-medium text-primary transition-opacity hover:opacity-80"
+                      >
+                        View concept
+                        <ArrowRight size={13} className="transition-transform duration-300 group-hover:translate-x-1" />
+                      </Link>
+                    </div>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        )}
+      </motion.div>
+
       <div className="rounded-[1.75rem] border border-[#5a412e] bg-[linear-gradient(180deg,#18120e_0%,#120f0d_100%)] p-5 shadow-[0_16px_40px_rgba(0,0,0,0.18)]">
         <div className="mb-4 flex items-center justify-between">
           <div>
@@ -276,8 +377,9 @@ const Dashboard = () => (
           </table>
         </div>
       </div>
-    </div>
-  </DashboardLayout>
-);
+      </div>
+    </DashboardLayout>
+  );
+};
 
 export default Dashboard;

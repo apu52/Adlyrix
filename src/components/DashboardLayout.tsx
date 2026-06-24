@@ -1,6 +1,6 @@
 import { ReactNode, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { LayoutDashboard, PlusCircle, FolderOpen, BarChart3, Search, Bell, User, Menu, X, PanelLeftClose, PanelLeftOpen, LogOut, ChevronDown, MessagesSquare } from "lucide-react";
+import { LayoutDashboard, PlusCircle, FolderOpen, BarChart3, Search, Bell, User, Menu, X, PanelLeftClose, PanelLeftOpen, LogOut, ChevronDown, MessagesSquare, Sparkles } from "lucide-react";
 
 const navItems = [
   { icon: LayoutDashboard, label: "Dashboard", path: "/dashboard" },
@@ -8,6 +8,7 @@ const navItems = [
   { icon: FolderOpen, label: "Ad Library", path: "/ad-library" },
   { icon: MessagesSquare, label: "Previous Chats", path: "/chat-history" },
   { icon: BarChart3, label: "Analytics", path: "/analytics" },
+  { icon: Sparkles, label: "Previous Work", path: "/previous-work" },
 ];
 
 const DashboardLayout = ({ children }: { children: ReactNode }) => {
